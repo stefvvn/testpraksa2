@@ -11,13 +11,14 @@ namespace Facebook.Data.EntityFramework
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        { }
 
         public ApplicationDbContext() : base("ApplicationDbContext")
         { }
 
-
-        public virtual DbSet<PostEntities> Post { get; set; }
         public virtual DbSet<AccountUserInfoEntities> User { get; set; }
+        public virtual DbSet<PostEntities> Post { get; set; }
     }
+
 }

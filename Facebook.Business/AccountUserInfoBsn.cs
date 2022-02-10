@@ -1,5 +1,6 @@
 ﻿using Facebook.Data.SQL;
 using Facebook.Entities;
+using Facebook.Interfaces;
 
 namespace Facebook.Business
 {

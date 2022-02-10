@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,16 +45,16 @@ namespace Facebook.UI.Winform
             if (string.IsNullOrEmpty(textBox9.Text)) 
             {
                 List<AccountUserInfoEntities> users = new List<AccountUserInfoEntities>();
-                AccountUserInfoBsn accountUserInfoBsn = new AccountUserInfoBsn();
-                users = accountUserInfoBsn.GetUsersMultiParam(textBox1.Text.ToString(), textBox2.Text.ToString(), textBox3.Text.ToString(), textBox4.Text.ToString(), textBox5.Text.ToString());
+                AccountUserInfoBsn bsn = new AccountUserInfoBsn();
+                users = bsn.GetUsersMultiParam(textBox1.Text.ToString(), textBox2.Text.ToString(), textBox3.Text.ToString(), textBox4.Text.ToString(), textBox5.Text.ToString());
                 dataGridView1.DataSource = users;
             }
             else
             {
-                List<AccountUserInfoEntities> users = new List<AccountUserInfoEntities>();
-                AccountUserInfoBsn accountUserInfoBsn = new AccountUserInfoBsn();
-                users = accountUserInfoBsn.GetUserById(int.Parse(textBox9.Text));
-                dataGridView1.DataSource = users;
+                List<AccountUserInfoEntities> user = new List<AccountUserInfoEntities>();
+                AccountUserInfoBsn bsn = new AccountUserInfoBsn();
+                user = bsn.GetUserById(int.Parse(textBox9.Text));
+                dataGridView1.DataSource = user;
             }
         }
 

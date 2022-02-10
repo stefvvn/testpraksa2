@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Facebook.Data.SQL\Facebook.Data.SQL.csproj" />
     <ProjectReference Include="..\Facebook.Entities\Facebook.Entities.csproj" />
+    <ProjectReference Include="..\Facebook.Interfaces\Facebook.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 ﻿using Facebook.Data.SQL;
 using Facebook.Entities;
 using Facebook.Interfaces;
+using System.Linq;
 
 namespace Facebook.Data.EntityFramework
 {
@@ -27,12 +28,14 @@ namespace Facebook.Data.EntityFramework
 
         public List<AccountUserInfoEntities> GetUserById(int Id)
         {
-            throw new NotImplementedException();
+            ApplicationDbContext Db = new ApplicationDbContext();
+            return (List<AccountUserInfoEntities>)Db.User.Where(u => u.UserIdNumber == Id);
         }
 
         public List<AccountUserInfoEntities> GetUserList()
         {
-            throw new NotImplementedException();
+            ApplicationDbContext Db = new ApplicationDbContext();
+            return Db.User.ToList();
         }
 
         public List<AccountUserInfoEntities> GetUsersMultiParam(string username, string emailaddress, string firstname, string lastname, string city)
@@ -47,15 +50,16 @@ namespace Facebook.Data.EntityFramework
             Db.SaveChanges();
             return user;
         }
-
         public AccountUserInfoEntities UpdateUserAccountInfo(AccountUserInfoEntities user)
         {
-            throw new NotImplementedException();
+            ApplicationDbContext Db = new ApplicationDbContext();
+            Db.User.Update(user);
+            Db.SaveChanges();
+            return user;
         }
         public AccountUserInfoEntities UpdateUserById(int Id)
         {
-            ApplicationDbContext Db = new ApplicationDbContext();
-            return (AccountUserInfoEntities)Db.User.Where(u => u.UserIdNumber == Id);
+            throw new NotImplementedException();
         }
     }
 
