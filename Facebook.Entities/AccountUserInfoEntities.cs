@@ -1,5 +1,8 @@
-﻿namespace Facebook.Entities
-{
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Facebook.Entities
+{   
+    [Keyless]
     public class AccountUserInfoEntities
     {
         public int UserIdNumber { get; set; }

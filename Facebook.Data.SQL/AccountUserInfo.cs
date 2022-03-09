@@ -1,4 +1,5 @@
 ﻿using Facebook.Entities;
+using Facebook.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,10 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Facebook.Data.SQL
 
 {
-    public class AccountUserInfoData : SqlBaseData
+    public class AccountUserInfoData : SqlBaseData, IAccountUserInfo
     {
         public AccountUserInfoEntities GetUserByID(int Id)
         {
@@ -172,6 +174,11 @@ namespace Facebook.Data.SQL
             }
             dr.Close();
             return users;
+        }
+
+        public AccountUserInfoEntities UpdateUserById(int Id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

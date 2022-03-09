@@ -1,5 +1,6 @@
 using Facebook.Business;
 using Facebook.Entities;
+using Facebook.Data.EntityFramework;
 
 namespace Facebook.UI.Winform
 {
@@ -17,6 +18,13 @@ namespace Facebook.UI.Winform
             LstUsers.ValueMember = "UserIdNumber";
             LstUsers.DisplayMember = "UserName";
             LstUsers.DataSource = list;
+
+            //List<AccountUserInfoEntities> list = new List<AccountUserInfoEntities>();
+            //ApplicationDbContext Db = new ApplicationDbContext();
+            //list = Db.User.ToList();
+            //LstUsers.ValueMember = "UserIdNumber";
+            //LstUsers.DisplayMember = "UserName";
+            //LstUsers.DataSource = list;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -33,6 +41,14 @@ namespace Facebook.UI.Winform
             LstPosts.ValueMember = "PostId";
             LstPosts.DisplayMember = "Content";
             LstPosts.DataSource = list;
+
+            //List<PostEntities> list = new List<PostEntities>();
+            //ApplicationDbContext Db = new ApplicationDbContext();
+            //list = (List<PostEntities>)Db.Post.Where(u => u.UserId == id);
+            //LstPosts.ValueMember = "PostId";
+            //LstPosts.DisplayMember = "Content";
+            //LstPosts.DataSource = list;
+
         }
         private void button2_Click(object sender, EventArgs e)
         {

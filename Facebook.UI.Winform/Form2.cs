@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Facebook.Business;
+using Facebook.Data.EntityFramework;
 using Facebook.Entities;
 
 namespace Facebook.UI.Winform
@@ -55,6 +56,12 @@ namespace Facebook.UI.Winform
                 AccountUserInfoBsn bsn = new AccountUserInfoBsn();
                 user = bsn.GetUserById(int.Parse(textBox9.Text));
                 dataGridView1.DataSource = user;
+
+                //AccountUserInfoBsn bsn = new AccountUserInfoBsn();
+                //ApplicationDbContext Db = new ApplicationDbContext();
+                //var user = Db.User.AsQueryable();
+                //user = (IQueryable<AccountUserInfoEntities>)(List<AccountUserInfoEntities>)Db.User.Where(u => u.UserIdNumber == int.Parse(textBox9.Text)); 
+                //dataGridView1.DataSource = user;
             }
         }
 

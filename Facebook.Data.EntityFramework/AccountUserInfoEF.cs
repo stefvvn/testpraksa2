@@ -61,6 +61,12 @@ namespace Facebook.Data.EntityFramework
         {
             throw new NotImplementedException();
         }
+
+        public List<PostEntities> GetPostsByUser(int Id)
+        {
+            ApplicationDbContext Db = new ApplicationDbContext();
+            return (List<PostEntities>)Db.Post.Where(u => u.UserId == Id);
+        }
     }
 
 }
