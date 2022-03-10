@@ -133,8 +133,7 @@ namespace Facebook.Data.SQL
                 AccountUserInfoEntities user = new AccountUserInfoEntities();
                 //user.UserIdNumber = (int)dr.GetValue(dr.GetOrdinal("userIdNumber"));
                 user.UserIdNumber = "userIdNumber".GetIntValue();
-                //user.UserName = dr.GetValue(dr.GetOrdinal("username")).ToString();
-                user.UserName = "userName".GetStringValue();
+                user.UserName = dr.GetValue(dr.GetOrdinal("username")).ToString();
                 user.FirstName = dr.GetValue(dr.GetOrdinal("firstName")).ToString();
                 user.City = dr.GetValue(dr.GetOrdinal("city")).ToString();
                 user.LastName = dr.GetValue(dr.GetOrdinal("lastName")).ToString();

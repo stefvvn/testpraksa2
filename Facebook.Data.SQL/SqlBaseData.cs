@@ -10,17 +10,6 @@ using System.Threading.Tasks;
 
 namespace Facebook.Data.SQL
 {
-    public static class FacebookExt
-    {
-        public static int GetIntValue(this string NazivKolone)
-        {
-            return int.Parse(NazivKolone);
-        }
-        public static string GetStringValue(this string NazivKolone)
-        {
-            return NazivKolone.ToString();
-        }
-    }
     public class SqlBaseData
     {
         public string connectionstring = "Data Source=DESKTOP-ORJTLLV\\SQLEXPRESS;" +
@@ -49,10 +38,26 @@ namespace Facebook.Data.SQL
         }
         protected SqlCommand GetCommand(string StoredProcedureName)
         {
-            //Command = new SqlCommand("getCommentById, GetConnection());
             Command = new SqlCommand(StoredProcedureName, GetConnection());
             Command.CommandType = CommandType.StoredProcedure;
             return Command;
         }
+    }
+    public static class FacebookExt
+    {
+        public static int GetIntValue(this string NazivKolone)
+        {
+            return (int)SqlDataReader.GetValue(SqlDataReader.GetOrdinal(NazivKolone));
+        }
+        //public static int GetIntValue(this SqlDataReader dr, string NazivKolone)
+        //{
+        //    object columnValue = dr[NazivKolone];
+        //    int returnValue = default(int);
+        //    if (!(columnValue is DBNull))
+        //    {
+        //        returnValue = (int)Convert.ChangeType(columnValue, typeof(int));
+        //    }
+        //    return returnValue;
+        //}
     }
 }
