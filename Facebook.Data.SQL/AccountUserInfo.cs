@@ -25,7 +25,7 @@ namespace Facebook.Data.SQL
             if (dr.Read())
             {
                 user.UserIdNumber = (int)dr.GetValue(dr.GetOrdinal("userIdNumber"));
-                user.UserName = dr.GetValue(dr.GetOrdinal("username")).ToString();
+                user.UserName = dr.GetValue(dr.GetOrdinal("userName")).ToString();
                 user.FirstName = dr.GetValue(dr.GetOrdinal("firstName")).ToString();
                 user.City = dr.GetValue(dr.GetOrdinal("city")).ToString();
                 user.LastName = dr.GetValue(dr.GetOrdinal("lastName")).ToString();
@@ -131,7 +131,10 @@ namespace Facebook.Data.SQL
             while (dr.Read())
             {
                 AccountUserInfoEntities user = new AccountUserInfoEntities();
-                user.UserIdNumber = (int)dr.GetValue(dr.GetOrdinal("userIdNumber"));
+                //user.UserIdNumber = (int)dr.GetValue(dr.GetOrdinal("userIdNumber"));
+                user.UserIdNumber = "userIdNumber".GetIntValue();
+                //user.UserName = dr.GetValue(dr.GetOrdinal("username")).ToString();
+                user.UserName = "userName".GetStringValue();
                 user.FirstName = dr.GetValue(dr.GetOrdinal("firstName")).ToString();
                 user.City = dr.GetValue(dr.GetOrdinal("city")).ToString();
                 user.LastName = dr.GetValue(dr.GetOrdinal("lastName")).ToString();
@@ -140,7 +143,6 @@ namespace Facebook.Data.SQL
                 user.ProfileDescription = dr.GetValue(dr.GetOrdinal("profileDescription")).ToString();
                 user.EmailAddress = dr.GetValue(dr.GetOrdinal("emailAddress")).ToString();
                 user.DateMade = (DateTime)dr.GetValue(dr.GetOrdinal("dateMade"));
-                user.UserName = dr.GetValue(dr.GetOrdinal("username")).ToString();
                 users.Add(user);
             }
             dr.Close();

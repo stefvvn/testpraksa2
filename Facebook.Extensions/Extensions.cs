@@ -1,7 +1,10 @@
 ﻿namespace Facebook.Extensions
 {
-    public class FacebookExt
+   public static class FacebookExtensions
     {
-
+        public static int GetIntValue(string NazivKolone)
+        {
+            return int.Parse(NazivKolone);
+        }
     }
 }

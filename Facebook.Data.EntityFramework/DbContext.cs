@@ -30,7 +30,7 @@ namespace Facebook.Data.EntityFramework
             get
 
             {
-                return "Data Source = DESKTOP - ORJTLLV\\SQLEXPRESS; Initial Catalog = praksaDrustvenaMreza; Integrated Security = SSPI;";
+                return "Data Source = DESKTOP-ORJTLLV\\SQLEXPRESS; Initial Catalog = praksaDrustvenaMreza; Integrated Security = SSPI;";
 
             }
 

@@ -10,6 +10,17 @@ using System.Threading.Tasks;
 
 namespace Facebook.Data.SQL
 {
+    public static class FacebookExt
+    {
+        public static int GetIntValue(this string NazivKolone)
+        {
+            return int.Parse(NazivKolone);
+        }
+        public static string GetStringValue(this string NazivKolone)
+        {
+            return NazivKolone.ToString();
+        }
+    }
     public class SqlBaseData
     {
         public string connectionstring = "Data Source=DESKTOP-ORJTLLV\\SQLEXPRESS;" +

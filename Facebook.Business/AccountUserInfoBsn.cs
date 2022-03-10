@@ -1,4 +1,5 @@
-﻿using Facebook.Data.SQL;
+﻿using Facebook.Data.EntityFramework;
+using Facebook.Data.SQL;
 using Facebook.Entities;
 using Facebook.Interfaces;
 
@@ -8,42 +9,58 @@ namespace Facebook.Business
     {
         public AccountUserInfoEntities InsertUser(AccountUserInfoEntities user)
         {
-            AccountUserInfoData data = new AccountUserInfoData();
+            IAccountUserInfo data = new AccountUserInfoData();
+
             return data.InsertUser(user);
         }
         public AccountUserInfoEntities GetUserByID(int Id)
         {
-            AccountUserInfoData data = new AccountUserInfoData();
+            //IAccountUserInfo data = GetUserData();
+            IAccountUserInfo data = new AccountUserInfoEF();
             return data.GetUserByID(Id);
         }
+
+        //private IAccountUserInfo GetUserData()
+        //{
+        //    int nesto = a;
+        //    if (nesto == 0)
+        //    {
+        //        return new AccountUserInfoEF();
+        //    }
+        //    else
+        //    {
+        //        return new AccountUserInfoData();
+        //    }
+        //    return null;
+        //}
         public AccountUserInfoEntities UpdateUserAccountInfo(AccountUserInfoEntities user)
         {
-            AccountUserInfoData data = new AccountUserInfoData();
+            IAccountUserInfo data = new AccountUserInfoData();
             return data.UpdateUserAccountInfo(user);
         }
         public AccountUserInfoEntities DeleteUserByID(int Id)
         {
-            AccountUserInfoData data = new AccountUserInfoData();
+            IAccountUserInfo data = new AccountUserInfoData();
             return data.DeleteUserByID(Id);
         }
         public List<AccountUserInfoEntities> GetUserList()
         {
-            AccountUserInfoData data = new AccountUserInfoData();
+            IAccountUserInfo data = new AccountUserInfoEF();
             return data.GetUserList();
         }
         public List<AccountUserInfoEntities> GetUserByCity(string City)
         {
-            AccountUserInfoData data = new AccountUserInfoData();
+            IAccountUserInfo data = new AccountUserInfoData();
             return data.GetUserByCity(City);
         }
         public List<AccountUserInfoEntities> GetUserById(int Id)
         {
-            AccountUserInfoData data = new AccountUserInfoData();
+            IAccountUserInfo data = new AccountUserInfoData();
             return data.GetUserById(Id);
         }
         public List<AccountUserInfoEntities> GetUsersMultiParam(string username, string emailaddress, string firstname, string lastname, string city)
         {
-            AccountUserInfoData data = new AccountUserInfoData();
+            IAccountUserInfo data = new AccountUserInfoData();
             return data.GetUsersMultiParam(username, emailaddress, firstname, lastname, city);
         }
     }

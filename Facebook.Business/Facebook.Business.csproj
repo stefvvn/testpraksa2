@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Facebook.Data.EntityFramework\Facebook.Data.EntityFramework.csproj" />
     <ProjectReference Include="..\Facebook.Data.SQL\Facebook.Data.SQL.csproj" />
     <ProjectReference Include="..\Facebook.Entities\Facebook.Entities.csproj" />
     <ProjectReference Include="..\Facebook.Interfaces\Facebook.Interfaces.csproj" />
