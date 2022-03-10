@@ -26,7 +26,7 @@ namespace Facebook.Data.EntityFramework
             return (AccountUserInfoEntities)Db.User.Where(u => u.UserIdNumber == Id);
         }
 
-        public List<AccountUserInfoEntities> GetUserById(int Id)
+        public List<AccountUserInfoEntities> GetUserListById(int Id)
         {
             ApplicationDbContext Db = new ApplicationDbContext();
             return (List<AccountUserInfoEntities>)Db.User.Where(u => u.UserIdNumber == Id);

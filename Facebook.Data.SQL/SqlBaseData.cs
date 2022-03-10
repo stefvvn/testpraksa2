@@ -43,21 +43,4 @@ namespace Facebook.Data.SQL
             return Command;
         }
     }
-    public static class FacebookExt
-    {
-        public static int GetIntValue(this string NazivKolone)
-        {
-            return (int)SqlDataReader.GetValue(SqlDataReader.GetOrdinal(NazivKolone));
-        }
-        //public static int GetIntValue(this SqlDataReader dr, string NazivKolone)
-        //{
-        //    object columnValue = dr[NazivKolone];
-        //    int returnValue = default(int);
-        //    if (!(columnValue is DBNull))
-        //    {
-        //        returnValue = (int)Convert.ChangeType(columnValue, typeof(int));
-        //    }
-        //    return returnValue;
-        //}
-    }
 }

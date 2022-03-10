@@ -15,7 +15,7 @@ namespace Facebook.Interfaces
         List<AccountUserInfoEntities> GetUserList();
         AccountUserInfoEntities DeleteUserByID(int Id);
         List<AccountUserInfoEntities> GetUserByCity(string City);
-        List<AccountUserInfoEntities> GetUserById(int Id);
+        List<AccountUserInfoEntities> GetUserListById(int Id);
         List<AccountUserInfoEntities> GetUsersMultiParam(string username, string emailaddress, string firstname, string lastname, string city);
         AccountUserInfoEntities UpdateUserById(int Id);
     }

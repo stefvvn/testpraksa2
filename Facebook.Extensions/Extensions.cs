@@ -1,10 +1,14 @@
-﻿namespace Facebook.Extensions
+﻿using Facebook.Entities;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace Facebook.Extensions
 {
-   public static class FacebookExtensions
+    public static class FacebookExt
     {
-        public static int GetIntValue(string NazivKolone)
+        public static int GetIntValue(this string NazivKolone)
         {
-            return int.Parse(NazivKolone);
+            return (int)SqlDataReader.GetValue(SqlDataReader.GetOrdinal(NazivKolone));
         }
     }
 }

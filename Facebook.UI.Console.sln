@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Facebook.Interfaces", "Face
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Facebook.Data.EntityFramework", "Facebook.Data.EntityFramework\Facebook.Data.EntityFramework.csproj", "{F2C25E0D-79D8-4263-A9B1-3BE33D7BB9D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facebook.Extensions", "Facebook.Extensions\Facebook.Extensions.csproj", "{947AD5B0-B20F-460C-B5E5-2B5F2F1B0D02}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,10 +51,6 @@ Global
 		{F2C25E0D-79D8-4263-A9B1-3BE33D7BB9D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2C25E0D-79D8-4263-A9B1-3BE33D7BB9D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2C25E0D-79D8-4263-A9B1-3BE33D7BB9D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{947AD5B0-B20F-460C-B5E5-2B5F2F1B0D02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{947AD5B0-B20F-460C-B5E5-2B5F2F1B0D02}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{947AD5B0-B20F-460C-B5E5-2B5F2F1B0D02}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{947AD5B0-B20F-460C-B5E5-2B5F2F1B0D02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

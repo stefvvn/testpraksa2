@@ -53,10 +53,10 @@ namespace Facebook.Business
             IAccountUserInfo data = new AccountUserInfoData();
             return data.GetUserByCity(City);
         }
-        public List<AccountUserInfoEntities> GetUserById(int Id)
+        public List<AccountUserInfoEntities> GetUserListById(int Id)
         {
             IAccountUserInfo data = new AccountUserInfoData();
-            return data.GetUserById(Id);
+            return data.GetUserListById(Id);
         }
         public List<AccountUserInfoEntities> GetUsersMultiParam(string username, string emailaddress, string firstname, string lastname, string city)
         {

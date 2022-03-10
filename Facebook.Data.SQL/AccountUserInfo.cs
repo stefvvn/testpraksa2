@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Facebook.Data.SQL
 
 {
@@ -122,7 +121,7 @@ namespace Facebook.Data.SQL
             dr.Close();
             return users;
         }
-        public List<AccountUserInfoEntities> GetUserById(int Id)
+        public List<AccountUserInfoEntities> GetUserListById(int Id)
         {
             List<AccountUserInfoEntities> users = new List<AccountUserInfoEntities>();
             GetCommand("GetUserById");
