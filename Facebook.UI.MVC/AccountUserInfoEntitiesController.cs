@@ -12,93 +12,93 @@ using Facebook.Business;
 
 namespace Facebook.UI.MVC
 {
-    public class PostEntitiesController : Controller
+    public class AccountUserInfoEntitiesController : Controller
     {
         private readonly FacebookUIMVCContext _context;
 
-        public PostEntitiesController(FacebookUIMVCContext context)
+        public AccountUserInfoEntitiesController(FacebookUIMVCContext context)
         {
             _context = context;
         }
 
-        // GET: PostEntities
+        // GET: AccountUserInfoEntities
         public async Task<IActionResult> Index()
         {
-            PostBsn post = new PostBsn();
-            return View(post.GetPostList());
+            AccountUserInfoBsn user = new AccountUserInfoBsn();
+            return View(user.GetUserList());
         }
 
-        // GET: PostEntities/Details/5
+        // GET: AccountUserInfoEntities/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            PostBsn post = new PostBsn();
-            return View(post.GetPostByID(id.Value));
+            AccountUserInfoBsn user = new AccountUserInfoBsn();
+            return View(user.GetUserByID(id.Value));
         }
 
-        // GET: PostEntities/Create
+        // GET: AccountUserInfoEntities/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: PostEntities/Create
+        // POST: AccountUserInfoEntities/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostId,UserId,Content,DateMade")] PostEntities postEntities)
+        public async Task<IActionResult> Create([Bind("UserIdNumber,UserName,FirstName,LastName,EmailAddress,City,Gender,DateOfBirth,ProfileDescription,DateMade")] AccountUserInfoEntities accountUserInfoEntities)
         {
-            PostBsn post = new PostBsn();
-            return View(post.InsertPost(postEntities));
+            AccountUserInfoBsn user = new AccountUserInfoBsn();
+            return View(user.InsertUser(accountUserInfoEntities));
 
             //if (ModelState.IsValid)
             //{
-            //    _context.Add(postEntities);
+            //    _context.Add(accountUserInfoEntities);
             //    await _context.SaveChangesAsync();
             //    return RedirectToAction(nameof(Index));
             //}
-            //return View(postEntities);
+            //return View(accountUserInfoEntities);
         }
 
-        // GET: PostEntities/Edit/5
+        // GET: AccountUserInfoEntities/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            PostBsn post = new PostBsn();
-            return View(post.GetPostByID(id.Value));
+            AccountUserInfoBsn user = new AccountUserInfoBsn();
+            return View(user.GetUserByID(id.Value));
         }
 
-        // POST: PostEntities/Edit/5
+        // POST: AccountUserInfoEntities/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PostId,UserId,Content,DateMade")] PostEntities postEntities)
+        public async Task<IActionResult> Edit(int id, [Bind("UserIdNumber,UserName,FirstName,LastName,EmailAddress,City,Gender,DateOfBirth,ProfileDescription,DateMade")] AccountUserInfoEntities accountUserInfoEntities)
         {
-            if (id != postEntities.PostId)
+            if (id != accountUserInfoEntities.UserIdNumber)
             {
                 return NotFound();
             }
-            PostBsn post = new PostBsn();
-            return View(post.UpdatePost(postEntities));
+            AccountUserInfoBsn user = new AccountUserInfoBsn();
+            return View(user.UpdateUserAccountInfo(accountUserInfoEntities));
 
             //if (ModelState.IsValid)
             //{
             //    try
             //    {
-            //        _context.Update(postEntities);
+            //        _context.Update(accountUserInfoEntities);
             //        await _context.SaveChangesAsync();
             //    }
             //    catch (DbUpdateConcurrencyException)
             //    {
-            //        if (!PostEntitiesExists(postEntities.PostId))
+            //        if (!AccountUserInfoEntitiesExists(accountUserInfoEntities.UserIdNumber))
             //        {
             //            return NotFound();
             //        }
@@ -109,48 +109,46 @@ namespace Facebook.UI.MVC
             //    }
             //    return RedirectToAction(nameof(Index));
             //}
-            //return View(postEntities);
+            //return View(accountUserInfoEntities);
         }
 
-        // GET: PostEntities/Delete/5
+        // GET: AccountUserInfoEntities/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            PostBsn post = new PostBsn();
-            return View(post.GetPostByID(id.Value));
+            AccountUserInfoBsn user = new AccountUserInfoBsn();
+            return View(user.GetUserByID(id.Value));
 
-            //var postEntities = await _context.PostEntities
-            //    .FirstOrDefaultAsync(m => m.PostId == id);
-            //if (postEntities == null)
+            //var accountUserInfoEntities = await _context.AccountUserInfoEntities
+            //    .FirstOrDefaultAsync(m => m.UserIdNumber == id);
+            //if (accountUserInfoEntities == null)
             //{
             //    return NotFound();
             //}
-            //return View(postEntities);
-
+            //return View(accountUserInfoEntities);
         }
 
-        // POST: PostEntities/Delete/5
+        // POST: AccountUserInfoEntities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int? id)
         {
-            PostBsn post = new PostBsn();
-            View(post.DeletePostByID(id.Value));
+            AccountUserInfoBsn user = new AccountUserInfoBsn();
+            View(user.DeleteUserByID(id.Value));
             return RedirectToAction(nameof(Index));
 
-            //var postEntities = await _context.PostEntities.FindAsync(id);
-            //_context.PostEntities.Remove(postEntities);
+            //var accountUserInfoEntities = await _context.AccountUserInfoEntities.FindAsync(id);
+            //_context.AccountUserInfoEntities.Remove(accountUserInfoEntities);
             //await _context.SaveChangesAsync();
             //return RedirectToAction(nameof(Index));
-
         }
 
-        private bool PostEntitiesExists(int id)
+        private bool AccountUserInfoEntitiesExists(int id)
         {
-            return _context.PostEntities.Any(e => e.PostId == id);
+            return _context.AccountUserInfoEntities.Any(e => e.UserIdNumber == id);
         }
     }
 }

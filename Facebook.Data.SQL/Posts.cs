@@ -59,7 +59,7 @@ namespace Facebook.Data.SQL
                 while (dr.Read())
                 {
                     PostEntities post = new PostEntities();
-                    post.PostId = (int)dr.GetValue(dr.GetOrdinal("postId"));
+                    post.PostId = dr.GetIntValue("postId");
                     post.UserId = (int)dr.GetValue(dr.GetOrdinal("userId"));
                     post.Content = dr.GetValue(dr.GetOrdinal("content")).ToString();
                     post.DateMade = (DateTime)dr.GetValue(dr.GetOrdinal("dateMade"));

@@ -15,9 +15,11 @@ namespace Facebook.Business
         }
         public AccountUserInfoEntities GetUserByID(int Id)
         {
-            //IAccountUserInfo data = GetUserData();
-            IAccountUserInfo data = new AccountUserInfoEF();
+            AccountUserInfoData data = new AccountUserInfoData();
             return data.GetUserByID(Id);
+
+            //IAccountUserInfo data = new AccountUserInfoEF();
+            //return data.GetUserByID(Id);
         }
 
         //private IAccountUserInfo GetUserData()
