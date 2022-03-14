@@ -9,11 +9,12 @@ using System.Data.SqlClient;
 
 namespace Facebook.Data.SQL
 {
-        public static class FacebookExt
+    public static class FacebookExt
+    {
+        public static int GetIntValue(this SqlDataReader dr, string NazivKolone)
         {
-            public static int GetIntValue(this string NazivKolone)
-            {
-                return (int)SqlDataReader.GetValue(SqlDataReader.GetOrdinal(NazivKolone));
-            }
+            return (int)dr.GetValue(dr.GetOrdinal(NazivKolone));
         }
+    }
 }
+
