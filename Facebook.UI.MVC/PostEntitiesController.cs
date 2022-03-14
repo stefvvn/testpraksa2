@@ -44,6 +44,7 @@ namespace Facebook.UI.MVC
         // GET: PostEntities/Create
         public IActionResult Create()
         {
+            PostBsn post = new PostBsn();
             return View();
         }
 
