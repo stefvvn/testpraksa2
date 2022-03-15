@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Facebook.Interfaces", "Face
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Facebook.Data.EntityFramework", "Facebook.Data.EntityFramework\Facebook.Data.EntityFramework.csproj", "{F2C25E0D-79D8-4263-A9B1-3BE33D7BB9D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facebook.UI.MVC", "Facebook.UI.MVC\Facebook.UI.MVC.csproj", "{42A46AF9-EB3C-4D3D-9F65-C843106E35AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Facebook.UI.MVC", "Facebook.UI.MVC\Facebook.UI.MVC.csproj", "{42A46AF9-EB3C-4D3D-9F65-C843106E35AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

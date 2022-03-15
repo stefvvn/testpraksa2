@@ -13,6 +13,7 @@ namespace Facebook.Business
 
             return data.InsertUser(user);
         }
+
         public AccountUserInfoEntities GetUserByID(int Id)
         {
             AccountUserInfoData data = new AccountUserInfoData();
@@ -22,39 +23,30 @@ namespace Facebook.Business
             //return data.GetUserByID(Id);
         }
 
-        //private IAccountUserInfo GetUserData()
-        //{
-        //    int nesto = a;
-        //    if (nesto == 0)
-        //    {
-        //        return new AccountUserInfoEF();
-        //    }
-        //    else
-        //    {
-        //        return new AccountUserInfoData();
-        //    }
-        //    return null;
-        //}
         public AccountUserInfoEntities UpdateUserAccountInfo(AccountUserInfoEntities user)
         {
             IAccountUserInfo data = new AccountUserInfoData();
             return data.UpdateUserAccountInfo(user);
         }
+
         public AccountUserInfoEntities DeleteUserByID(int Id)
         {
             IAccountUserInfo data = new AccountUserInfoData();
             return data.DeleteUserByID(Id);
         }
+
         public List<AccountUserInfoEntities> GetUserList()
         {
             IAccountUserInfo data = new AccountUserInfoEF();
             return data.GetUserList();
         }
+
         public List<AccountUserInfoEntities> GetUserByCity(string City)
         {
             IAccountUserInfo data = new AccountUserInfoData();
             return data.GetUserByCity(City);
         }
+
         public List<AccountUserInfoEntities> GetUserListById(int Id)
         {
             IAccountUserInfo data = new AccountUserInfoData();
