@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Facebook.Entities.PostEntities>
-
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,6 +8,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -21,21 +21,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.DateMade)
             </th>
-            <th></th>
+            <th> 
+                @Html.DisplayNameFor(model => model.Title) 
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateMade)
-            </td>
+            <td> @Html.DisplayFor(modelItem => item.UserId)</td>
+            <td> @Html.DisplayFor(modelItem => item.Content) </td>
+            <td> @Html.DisplayFor(modelItem => item.DateMade) </td>
+            <td> @Html.DisplayFor(modelItem => item.Title) </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PostId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.PostId">Details</a> |

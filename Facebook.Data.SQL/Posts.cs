@@ -26,6 +26,7 @@ namespace Facebook.Data.SQL
                     post.UserId = (int)dr.GetValue(dr.GetOrdinal("userId"));
                     post.Content = dr.GetValue(dr.GetOrdinal("content")).ToString();
                     post.DateMade = (DateTime)dr.GetValue(dr.GetOrdinal("dateMade"));
+                    post.Title = dr.GetValue(dr.GetOrdinal("Title")).ToString();
                 }
                 return post;
             }
@@ -36,6 +37,7 @@ namespace Facebook.Data.SQL
             {
                 AddParameterWithValue("@userId", SqlDbType.Int, post.UserId);
                 AddParameterWithValue("@content", SqlDbType.Text, post.Content);
+                AddParameterWithValue("@Title", SqlDbType.Text, post.Title);
                 Command.ExecuteNonQuery();
             }
             return post;
@@ -46,6 +48,7 @@ namespace Facebook.Data.SQL
             {
                 AddParameterWithValue("@postId", SqlDbType.Int, post.PostId);
                 AddParameterWithValue("@content", SqlDbType.Text, post.Content);
+                AddParameterWithValue("@Title", SqlDbType.Text, post.Title);
                 Command.ExecuteNonQuery();
             }
             return post;
@@ -63,6 +66,7 @@ namespace Facebook.Data.SQL
                     post.UserId = (int)dr.GetValue(dr.GetOrdinal("userId"));
                     post.Content = dr.GetValue(dr.GetOrdinal("content")).ToString();
                     post.DateMade = (DateTime)dr.GetValue(dr.GetOrdinal("dateMade"));
+                    post.Title = dr.GetValue(dr.GetOrdinal("Title")).ToString();
                     posts.Add(post);
                 }
                 dr.Close();
@@ -91,6 +95,7 @@ namespace Facebook.Data.SQL
                     post.UserId = (int)dr.GetValue(dr.GetOrdinal("userId"));
                     post.Content = dr.GetValue(dr.GetOrdinal("content")).ToString();
                     post.DateMade = (DateTime)dr.GetValue(dr.GetOrdinal("dateMade"));
+                    post.Title = dr.GetValue(dr.GetOrdinal("Title")).ToString();
                     posts.Add(post);
                 }
                 dr.Close();

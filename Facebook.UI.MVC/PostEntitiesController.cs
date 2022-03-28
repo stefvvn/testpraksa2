@@ -50,7 +50,7 @@ namespace Facebook.UI.MVC
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostId,UserId,Content,DateMade")] PostEntities postEntities)
+        public async Task<IActionResult> Create([Bind("PostId,UserId,Content,DateMade,Title")] PostEntities postEntities)
         {
             PostBsn post = new PostBsn();
             return View(post.InsertPost(postEntities));
@@ -80,7 +80,7 @@ namespace Facebook.UI.MVC
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PostId,UserId,Content,DateMade")] PostEntities postEntities)
+        public async Task<IActionResult> Edit(int id, [Bind("PostId,UserId,Content,DateMade,Title")] PostEntities postEntities)
         {
             if (id != postEntities.PostId)
             {
