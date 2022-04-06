@@ -9,79 +9,48 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-<div class="wrapper">
-    
-    
-    <!-- Sidebar -->
 
-@*    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>Follow</h3>
-
-            <div class="input-group md-form form-sm form-2 pl-0">
-                <div class="input-group mb-3">
-
-                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                    <div class="input-group-addon">
-                        <span class="input-group-text" id="basic-addon1"><i class="glyphicon glyphicon-search" aria-hidden="true"></i></span>
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div class="navbar-collapse collapse">
-                <ul class="list-unstyled">
-                    <li>
-                        @Html.ActionLink("1", "UpdateTweet", "Home") <span class="text-primary">Followers</span>
-                    </li>
-                    <li>
-                        @Html.ActionLink("3", "UpdateTweet", "Home") <span>Following</span>
-                    </li>
-                    <li>
-                        @Html.ActionLink("12", "UpdateTweet", "Home") <span>Tweets</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>*@
+<!-- Sidebar Left -->
+<div id="sidebar">
+   <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
 </div>
-
-<!-- Navbar -->
-@*<div class="navbar topnav-header navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("TwitterClone", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Profile", "Index", "Person")</li>
-                </ul>
-                <ul class="nav navbar-nav navbar-align-right">
-                        <li> @Html.ActionLink("Welcome -" + "Template user" + "!", "Details", "Person", new { id = "Template User Id"}, null)</li>
-                        <li>@Html.ActionLink("Sign Out", "LogOut", "Accounts")</li>
-                </ul>
-
-            </div>
-        </div>
-    </div>*@
-
-
 
 <!-- Posts -->
 @foreach (var item in Model) {
+    <div id="post_body">
        <div>
                 <a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@item.UserId"> @Html.DisplayFor(modelItem => item.UserId)</a>
                 <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
        </div> 
        <div><img src="~/img/Tree.jpg" width="300" height="auto"></div>
-       <div>
-            <p>@Html.DisplayFor(modelItem => item.Content)</p>
-       </div>
+       <div><p>@Html.DisplayFor(modelItem => item.Content)</p></div>
        <div>Posted on @Html.DisplayFor(modelItem => item.DateMade)</div>
-        <br />
+    </div>
+
+<!-- Sidebar Right -->
+<div id="sidebar_right">
+   <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+       <p>Test Paragraph</p>
+</div>
 }
