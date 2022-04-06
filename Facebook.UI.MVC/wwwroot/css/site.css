@@ -1,20 +1,20 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 body {
@@ -306,7 +306,7 @@ body {
             text-decoration: underline;
         }
 
-        /* Test */
+/* Test */
 .topnav-header {
     background-color: white;
     border-bottom: 1px solid blue;
@@ -374,7 +374,9 @@ bodytest {
     color: #000000d1;
 }
 
-.posttest {
+
+
+/*.posttest {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -383,12 +385,22 @@ bodytest {
     border-radius: 10px;
     background: white;
 }
+*/
+.posttest {
+    margin: auto;
+    top: 50%;
+    right: 50%;
+    width: 500px;
+    border-radius: 10px;
+    background: lightblue;
+    margin-bottom: 25px;
+}
 
 .headtest {
     display: flex;
     border-radius: 10px;
     padding: 15px;
-    background: white;
+    background: lightblue;
     align-items: center;
     justify-content: space-between;
 }
