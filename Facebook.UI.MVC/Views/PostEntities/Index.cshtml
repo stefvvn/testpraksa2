@@ -27,7 +27,7 @@
 </div>
 
 <!-- Posts -->
-@foreach (var item in Model) {
+@*@foreach (var item in Model) {
     <div id="post_body">
        <div>
                 <a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@item.UserId"> @Html.DisplayFor(modelItem => item.UserId)</a>
@@ -38,7 +38,43 @@
        <div>
            <a asp-controller="PostEntities" asp-action="Details" asp-route-id="@item.PostId">Posted on @Html.DisplayFor(modelItem => item.DateMade)</a>
            </div>
-    </div>
+    </div>*@
+
+<!-- Posts2 -->
+@foreach (var item in Model) {
+<div class="posttest">
+	<div class="headtest">
+		<div class="name_profiletest">
+			<img src="~/img/Tree.jpg" class="avatartest">
+			<div class="qtest">
+				<a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@item.UserId"> @Html.DisplayFor(modelItem => item.UserId)</a>
+				<p><a asp-controller="PostEntities" asp-action="Details" asp-route-id="@item.PostId">Posted on @Html.DisplayFor(modelItem => item.DateMade)</a></p>
+			</div>
+		</div>
+		<div class="icontest">
+			<img src="~/img/more.svg" class="svgtest">
+		</div>
+	</div>
+	<div class="bodytest">
+			<p>@Html.DisplayFor(modelItem => item.Content)</p>
+			<img class="post_imagetest" src="~/img/Tree.jpg">
+			<div class="btm_icontest">
+				<div class="left_icontest">
+					<img src="~/img/heart.svg" class="svgtest margintest">
+					<img src="~/img/comment.svg" class="svgtest margintest">
+					<img src="~/img/share.svg" class="svgtest margintest">
+				</div>
+				<div class="right_icontest">
+					<img src="~/img/save.svg" class="svgtest margintest">
+				</div>
+			</div>
+			<form><div class="flextest">
+				<img src="~/img/Tree.jpg" class="icotest">
+				<input type="text" name="" placeholder="Enter Text..." class="intest"></div>
+					<img src="~/img/send.svg" class="svgtest margintest">
+			</form>
+		</div>
+</div>
 
 <!-- Sidebar Right -->
 <div id="sidebar_right">
