@@ -35,7 +35,9 @@
        </div> 
        <div><img src="~/img/Tree.jpg" width="300" height="auto"></div>
        <div><p>@Html.DisplayFor(modelItem => item.Content)</p></div>
-       <div>Posted on @Html.DisplayFor(modelItem => item.DateMade)</div>
+       <div>
+           <a asp-controller="PostEntities" asp-action="Details" asp-route-id="@item.PostId">Posted on @Html.DisplayFor(modelItem => item.DateMade)</a>
+           </div>
     </div>
 
 <!-- Sidebar Right -->
