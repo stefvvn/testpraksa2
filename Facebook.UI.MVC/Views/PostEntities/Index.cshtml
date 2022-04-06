@@ -48,7 +48,8 @@
 			<img src="~/img/Tree.jpg" class="avatartest">
 			<div class="qtest">
 				<a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@item.UserId"> @Html.DisplayFor(modelItem => item.UserId)</a>
-				<p><a asp-controller="PostEntities" asp-action="Details" asp-route-id="@item.PostId">Posted on @Html.DisplayFor(modelItem => item.DateMade)</a></p>
+                <br/>
+				<a asp-controller="PostEntities" asp-action="Details" asp-route-id="@item.PostId">Posted on @Html.DisplayFor(modelItem => item.DateMade)</a>
 			</div>
 		</div>
 		<div class="icontest">
