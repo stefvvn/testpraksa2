@@ -21,6 +21,12 @@ namespace Facebook.UI.MVC
             _context = context;
         }
 
+        //// Search
+        public ActionResult Search(string q)
+        {
+          throw new NotImplementedException();
+        }
+
         // GET: PostEntities
         public async Task<IActionResult> Index()
         {

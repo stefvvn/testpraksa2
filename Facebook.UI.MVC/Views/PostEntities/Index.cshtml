@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Index";
 }
+   
 
 <h1>Index</h1>
 
@@ -11,20 +12,50 @@
 
 
 <!-- Sidebar Left -->
-<div id="sidebar">
-   <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-</div>
+ <div class="left">
+            <div class="div" id="div-id">
+                <div class="div" id="covid"><img class="side" src="~/img/profile.jpg" /><span id="side"> Enoch Toby</span></div>
+                <div class="div" id="covid"><img class="side" src="~/img/COVID-19_information_center.jpg" /><span id="side"> COVID-19 Information Center</span></div>
+                <div class="div" id="covid"><img class="side" src="~/img/messenger.jpg" /><span id="side"> Messenger</span></div>
+                <div class="div" id="covid"><img class="side" src="~/img/fundraisers.jpg" /><span id="side"> Fundraisers</span></div>
+                <div class="div" id="covid"><img class="side" src="~/img/Groups.jpg" /><span id="side"> Groups</span></div>
+                <div class="div" id="covid"><img class="side" src="~/img/Watch.jpg" /><span id="side"> Videos</span></div>
+                <div class="div" id="covid"><img class="side" src="~/img/pages.jpg" /><span id="side"> Pages</span></div>
+                <div class="div" id="covid"><img class="side" src="~/img/events.jpg" /><span id="side"> Events</span></div>
+                <div class="div" id="covid"><img class="side" src="~/img/friend-lists.jpg" /><span id="side"> Friend Lists</span></div>
+                <div class="div" id="covid"><img class="side" src="~/img/saved.jpg" /><span id="side"> Saved</span></div>
+                <div class="see-more">See More ></div>
+            </div> <hr>
+
+            <aside class="navigate">
+                <nav class="nav">
+                    <p> Privacy</p>
+                    <p> · Terms</p>
+                    <p> · Advertising</p>
+                    <p> · Ad Choice</p>
+                </nav>
+
+                <nav class="nav">
+                    <p>Cookies</p>
+                    <p>· More </p>
+                    <p>· Toby's Facebook © 2020 ·</p>
+                </nav>
+            </aside>
+        </div> 
+         <main class="main">
+            <article id="main">
+                <article class="article1">
+                    <div class="row2" id="row2">
+                        <div class="row2"><img class="profile" src="img/profile.jpg" /></div>
+                        <div><input class="input2" type="textarea" placeholder="What's on your mind, {USER}?" /></div>
+                    </div>
+            
+                    <div class="up">
+                        <p class="up1"><img id="up" src="~/img/live-video.jpg" />Live Video</p>
+                        <p class="up1"><img id="up" src="~/img/Photo.png" />Photo/Video</p>
+                        <p class="up1"><img id="up" src="~/img/Smiley.jpg" />Feeling/Activity</p>
+                    </div>
+                </article> 
 
 <!-- Posts -->
 @*@foreach (var item in Model) {

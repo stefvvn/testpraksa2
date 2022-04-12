@@ -17,6 +17,27 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                @*SEARCH*@
+                @*@using (Html.BeginForm())
+                {
+                <p>
+                @Html.TextBox("SearchName")
+                <input type="submit" value="Search" />
+                </p>
+                }*@
+
+                @*SEARCH*@
+                <div class="navbar-left">
+                @using (Html.BeginForm("Index", "Search", FormMethod.Get))
+                    {
+                        <ul class="navbar-nav">
+                            <li>@Html.TextBox("id", ViewBag.CurrentFilter as string)</li>
+                            <li><input type="submit" value="Search" /></li>
+                        </ul>
+                    }
+                </div>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">

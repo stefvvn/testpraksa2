@@ -497,3 +497,166 @@ formtest {
     margin-bottom: 10px;
     margin-top: 20px;
 }
+
+.left {
+    position: fixed;
+    margin-top: 40px;
+    z-index: 0;
+}
+
+@media screen and (max-width: 1180px) {
+    .left {
+        display: none;
+    }
+}
+
+.div {
+    margin: 12px 1px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+#covid {
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+    #covid:hover {
+        background-color: rgb(197, 197, 197);
+        border-radius: 5px;
+    }
+
+.side {
+    width: 22px;
+    height: 22px;
+    border-radius: 100%;
+}
+
+#side {
+    margin-left: 10px;
+    font-size: 15px;
+    margin-top: 2px;
+}
+
+.see-more {
+    margin-left: 10px;
+    background-color: rgb(189, 186, 186);
+    width: 195px;
+    height: 25px;
+    padding-left: 95px;
+    padding-top: 5px;
+    border-radius: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+}
+
+    .see-more:hover {
+        background-color: rgb(211, 211, 211);
+        border-radius: 5px;
+    }
+
+.navigate {
+    margin-bottom: 0;
+    padding: 0;
+    margin-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav, nav1 {
+    display: flex;
+    font-size: small;
+    color: gray;
+    line-height: 0px;
+    cursor: pointer;
+}
+
+#main {
+    margin: 60px 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    z-index: 1;
+}
+
+@media screen and (min-width: 1180px) {
+
+    .main {
+        max-width: 570px;
+        margin: auto;
+    }
+}
+
+.article1 {
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-left: 15px;
+    box-shadow: 0 1px 5px rgb(194, 193, 193);
+}
+
+.row2 {
+    display: flex;
+    margin-right: 5px;
+}
+
+#row2 {
+    border-bottom: 1px solid rgb(231, 229, 229);
+}
+
+.input2 {
+    border-radius: 20px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    border: 0px;
+    background-color: rgb(231, 229, 229);
+    width: 440px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.up {
+    display: flex;
+    width: 460px;
+}
+
+.up1 {
+    display: flex;
+    margin-right: 15px;
+    width: 100%;
+    cursor: pointer;
+}
+
+#up {
+    height: 15px;
+    margin-right: 5px;
+}
+
+ @media screen and (min-width: 1180px) {
+    .nav1 {
+        display: none;
+    }
+}
+
+.div {
+    margin: 12px 1px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+
+}
+
+.profile {
+    margin-left: 2px;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#prof {
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+} 
