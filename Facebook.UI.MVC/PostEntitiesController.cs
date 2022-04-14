@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Facebook.Entities;
 using Facebook.UI.MVC.Data;
 using Facebook.Business;
+using Microsoft.AspNetCore.Http;
 
 namespace Facebook.UI.MVC
 {
@@ -22,9 +23,19 @@ namespace Facebook.UI.MVC
         }
 
         //// Search
-        public ActionResult Search(string q)
+        public async Task<IActionResult> Search(string searchstring)
         {
-          throw new NotImplementedException();
+            PostBsn post = new PostBsn();
+            if (string.IsNullOrEmpty(searchstring))
+            {
+                var datacontext = _context.PostEntities.Include(c => c.Title).Include(c => c.Content);
+                return View(await datacontext.ToListAsync());
+            }else
+            {
+                var searchResult = await _context.PostEntities.Include(c => c.Title).Include(c => c.Content).Where(s => s.Title.Contains(searchstring)).ToListAsync();
+                return View(searchResult);
+            }
+
         }
 
         // GET: PostEntities

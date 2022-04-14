@@ -1,8 +1,12 @@
-﻿using Facebook.Business;
+﻿using System;
+using Facebook.Business;
 using Facebook.Entities;
 using Facebook.UI.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using System.Web;
+
 
 namespace Facebook.UI.MVC.Controllers
 {
@@ -17,6 +21,14 @@ namespace Facebook.UI.MVC.Controllers
 
         public IActionResult Index()
         {
+            CookieOptions cookieOptions = new CookieOptions();
+            HttpContext.Response.Cookies.Append("first_request", DateTime.Now.ToString(), cookieOptions);
+            HttpContext.Response.Cookies.Append("user_id", "2");
+            HttpContext.Response.Cookies.Append("user_name", "Username");
+            HttpContext.Response.Cookies.Append("first_name", "Ime");
+            HttpContext.Response.Cookies.Append("last_name", "Prezime");
+            var userId = HttpContext.Request.Cookies["user_id"];
+            
             return View();
         }
 
@@ -24,6 +36,7 @@ namespace Facebook.UI.MVC.Controllers
         {
             return View();
         }
+
         public IActionResult Create()
         {
             return View();
