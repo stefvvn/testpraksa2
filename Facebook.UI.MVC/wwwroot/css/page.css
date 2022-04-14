@@ -11,6 +11,7 @@
     --bg-color: #fff;
     --text-color: #121212;
     --search-color: #fff;
+    --event-color: #fff;
 }
 
 .dark-theme {
@@ -19,10 +20,8 @@
     --bg-color: #222222;
     --text-color: #fff;
     --search-color: #404040;
+    --event-color: #363636;
 }
-
-
-
 
 
 
@@ -210,6 +209,7 @@ nav {
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: var(--event-color);
 }
 
 .event p {
