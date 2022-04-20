@@ -22,23 +22,13 @@ namespace Facebook.UI.MVC
             _context = context;
         }
 
-        //// Search
-        public async Task<IActionResult> Search(string searchstring)
-        {
-            PostBsn post = new PostBsn();
-            if (string.IsNullOrEmpty(searchstring))
-            {
-                var datacontext = _context.PostEntities.Include(c => c.Title).Include(c => c.Content);
-                return View(await datacontext.ToListAsync());
-            }else
-            {
-                var searchResult = await _context.PostEntities.Include(c => c.Title).Include(c => c.Content).Where(s => s.Title.Contains(searchstring)).ToListAsync();
-                return View(searchResult);
-            }
-
-        }
-
         // GET: PostEntities
+        //public async Task<IActionResult> Index()
+        //{
+        //    PostBsn post = new PostBsn();
+        //    return View(post.GetPostList());
+        //}
+
         public async Task<IActionResult> Index()
         {
             PostBsn post = new PostBsn();
@@ -71,14 +61,6 @@ namespace Facebook.UI.MVC
         {
             PostBsn post = new PostBsn();
             return View(post.InsertPost(postEntities));
-
-            //if (ModelState.IsValid)
-            //{
-            //    _context.Add(postEntities);
-            //    await _context.SaveChangesAsync();
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //return View(postEntities);
         }
 
         // GET: PostEntities/Edit/5
@@ -105,28 +87,6 @@ namespace Facebook.UI.MVC
             }
             PostBsn post = new PostBsn();
             return View(post.UpdatePost(postEntities));
-
-            //if (ModelState.IsValid)
-            //{
-            //    try
-            //    {
-            //        _context.Update(postEntities);
-            //        await _context.SaveChangesAsync();
-            //    }
-            //    catch (DbUpdateConcurrencyException)
-            //    {
-            //        if (!PostEntitiesExists(postEntities.PostId))
-            //        {
-            //            return NotFound();
-            //        }
-            //        else
-            //        {
-            //            throw;
-            //        }
-            //    }
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //return View(postEntities);
         }
 
         // GET: PostEntities/Delete/5
@@ -139,14 +99,6 @@ namespace Facebook.UI.MVC
             PostBsn post = new PostBsn();
             return View(post.GetPostByID(id.Value));
 
-            //var postEntities = await _context.PostEntities
-            //    .FirstOrDefaultAsync(m => m.PostId == id);
-            //if (postEntities == null)
-            //{
-            //    return NotFound();
-            //}
-            //return View(postEntities);
-
         }
 
         // POST: PostEntities/Delete/5
@@ -157,11 +109,6 @@ namespace Facebook.UI.MVC
             PostBsn post = new PostBsn();
             View(post.DeletePostByID(id.Value));
             return RedirectToAction(nameof(Index));
-
-            //var postEntities = await _context.PostEntities.FindAsync(id);
-            //_context.PostEntities.Remove(postEntities);
-            //await _context.SaveChangesAsync();
-            //return RedirectToAction(nameof(Index));
 
         }
 

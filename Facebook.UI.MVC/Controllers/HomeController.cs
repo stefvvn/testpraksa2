@@ -21,14 +21,13 @@ namespace Facebook.UI.MVC.Controllers
 
         public IActionResult Index()
         {
-            CookieOptions cookieOptions = new CookieOptions();
-            HttpContext.Response.Cookies.Append("first_request", DateTime.Now.ToString(), cookieOptions);
-            HttpContext.Response.Cookies.Append("user_id", "2");
-            HttpContext.Response.Cookies.Append("user_name", "Username");
-            HttpContext.Response.Cookies.Append("first_name", "Ime");
-            HttpContext.Response.Cookies.Append("last_name", "Prezime");
-            var userId = HttpContext.Request.Cookies["user_id"];
-            
+            //CookieOptions cookieOptions = new CookieOptions();
+            //HttpContext.Response.Cookies.Append("first_request", DateTime.Now.ToString(), cookieOptions);
+            //HttpContext.Response.Cookies.Append("user_id", "1");
+            //HttpContext.Response.Cookies.Append("user_name", "UserName");
+            //HttpContext.Response.Cookies.Append("first_name", "Vuk");
+            //HttpContext.Response.Cookies.Append("last_name", "Vasiljević");
+
             return View();
         }
 

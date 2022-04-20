@@ -461,6 +461,14 @@ nav {
     border-radius: 4px;
 }
 
+.activity-button {
+    border: 1px solid #9a9a9a;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-color);
+    background: transparent;
+}
+
 .footer {
     text-align: center;
     /*color: #9a9a9a;*/

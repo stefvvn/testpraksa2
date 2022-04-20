@@ -11,54 +11,9 @@
 </p>
 
 
-<!-- Sidebar Left -->
- <div class="left">
-            <div class="div" id="div-id">
-                <div class="div" id="covid"><img class="side" src="~/img/profile.jpg" /><span id="side"> Enoch Toby</span></div>
-                <div class="div" id="covid"><img class="side" src="~/img/COVID-19_information_center.jpg" /><span id="side"> COVID-19 Information Center</span></div>
-                <div class="div" id="covid"><img class="side" src="~/img/messenger.jpg" /><span id="side"> Messenger</span></div>
-                <div class="div" id="covid"><img class="side" src="~/img/fundraisers.jpg" /><span id="side"> Fundraisers</span></div>
-                <div class="div" id="covid"><img class="side" src="~/img/Groups.jpg" /><span id="side"> Groups</span></div>
-                <div class="div" id="covid"><img class="side" src="~/img/Watch.jpg" /><span id="side"> Videos</span></div>
-                <div class="div" id="covid"><img class="side" src="~/img/pages.jpg" /><span id="side"> Pages</span></div>
-                <div class="div" id="covid"><img class="side" src="~/img/events.jpg" /><span id="side"> Events</span></div>
-                <div class="div" id="covid"><img class="side" src="~/img/friend-lists.jpg" /><span id="side"> Friend Lists</span></div>
-                <div class="div" id="covid"><img class="side" src="~/img/saved.jpg" /><span id="side"> Saved</span></div>
-                <div class="see-more">See More ></div>
-            </div> <hr>
-
-            <aside class="navigate">
-                <nav class="nav">
-                    <p> Privacy</p>
-                    <p> · Terms</p>
-                    <p> · Advertising</p>
-                    <p> · Ad Choice</p>
-                </nav>
-
-                <nav class="nav">
-                    <p>Cookies</p>
-                    <p>· More </p>
-                    <p>· Toby's Facebook © 2020 ·</p>
-                </nav>
-            </aside>
-        </div> 
-         <main class="main">
-            <article id="main">
-                <article class="article1">
-                    <div class="row2" id="row2">
-                        <div class="row2"><img class="profile" src="img/profile.jpg" /></div>
-                        <div><input class="input2" type="textarea" placeholder="What's on your mind, {USER}?" /></div>
-                    </div>
-            
-                    <div class="up">
-                        <p class="up1"><img id="up" src="~/img/live-video.jpg" />Live Video</p>
-                        <p class="up1"><img id="up" src="~/img/Photo.png" />Photo/Video</p>
-                        <p class="up1"><img id="up" src="~/img/Smiley.jpg" />Feeling/Activity</p>
-                    </div>
-                </article> 
 
 <!-- Posts -->
-@*@foreach (var item in Model) {
+@foreach (var item in Model) {
     <div id="post_body">
        <div>
                 <a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@item.UserId"> @Html.DisplayFor(modelItem => item.UserId)</a>
@@ -69,58 +24,7 @@
        <div>
            <a asp-controller="PostEntities" asp-action="Details" asp-route-id="@item.PostId">Posted on @Html.DisplayFor(modelItem => item.DateMade)</a>
            </div>
-    </div>*@
+    </div>
 
-<!-- Posts2 -->
-@foreach (var item in Model) {
-<div class="posttest">
-	<div class="headtest">
-		<div class="name_profiletest">
-			<img src="~/img/profilepic.png" class="avatartest">
-			<div class="qtest">
-				<a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@item.UserId"> @Html.DisplayFor(modelItem => item.UserId)</a>
-                <br/>
-				Posted on <a asp-controller="PostEntities" asp-action="Details" asp-route-id="@item.PostId">@Html.DisplayFor(modelItem => item.DateMade)</a>
-			</div>
-		</div>
-		<div class="icontest">
-			<img src="~/img/more.svg" class="svgtest">
-		</div>
-	</div>
-	<div class="bodytest">
-			<p>@Html.DisplayFor(modelItem => item.Content)</p>
-			<img class="post_imagetest" src="~/img/Tree.jpg">
-			<div class="btm_icontest">
-				<div class="left_icontest">
-					<img src="~/img/heart.svg" class="svgtest margintest">
-					<img src="~/img/comment.svg" class="svgtest margintest">
-					<img src="~/img/share.svg" class="svgtest margintest">
-				</div>
-				<div class="right_icontest">
-					<img src="~/img/save.svg" class="svgtest margintest">
-				</div>
-			</div>
-			<form><div class="flextest">
-				<img src="~/img/profilepic.png" class="icotest">
-				<input type="text" name="" placeholder="Enter Text..." class="intest"></div>
-					<img src="~/img/send.svg" class="svgtest margintest">
-			</form>
-		</div>
-</div>
 
-<!-- Sidebar Right -->
-<div id="sidebar_right">
-   <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-       <p>Test Paragraph</p>
-</div>
 }

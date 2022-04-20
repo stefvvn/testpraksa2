@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 
 var settingsmenu = document.querySelector(".settings-menu");
-var darkBtn = document.getElementById("dark-btn")
+var darkBtn = document.getElementById("dark-btn");
 
 function settingsMenuToggle() {
     settingsmenu.classList.toggle("settings-menu-height");
@@ -37,3 +37,33 @@ else {
     localStorage.setItem("theme", "light");
 }
 
+function setCookie(cName, cValue, expDays) {
+    let date = new Date();
+    date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+}
+
+function getCookie(cName) {
+    const name = cName + "=";
+    const cDecoded = decodeURIComponent(document.cookie);
+    const cArr = cDecoded.split('; ');
+    let res;
+    cArr.forEach(val => {
+        if (val.indexOf(name) === 0) res = val.substring(name.length);
+    })
+    return res;
+}
+
+setCookie("FirstName", "Vuk", 1);
+setCookie("LastName", "Vasiljevic", 1);
+setCookie("UserID", "1", 1);
+setCookie("UserName", "TestUserName", 1);
+
+var FirstName = getCookie("FirstName");
+var LastName = getCookie("LastName");
+var UserID = getCookie("UserID");
+var UserName = getCookie("UserName");
+
+document.getElementById('SettingsSessionName').textContent = FirstName + " " + LastName;
+document.getElementById('FeedSessionName').textContent = FirstName + " " + LastName;

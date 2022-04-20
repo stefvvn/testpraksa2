@@ -16,9 +16,10 @@
     <link rel="stylesheet" href="~/css/page.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Facebook.UI.MVC.styles.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap" rel="stylesheet">
+    <script src="~/js/site.js"></script>
     <script src="https://kit.fontawesome.com/bd623f34da.js" crossorigin="anonymous"></script>
-
-
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    
 
 </head>
 
@@ -55,8 +56,9 @@
                 <div class="settings-menu-inner">
                     <div class="user-profile">
                         <img src="~/images/profile-pic.png">
-                        <div>
-                            <p>Petar Misic</p>
+                        <div class="">
+                            @*<p>Petar Misic</p>*@
+                            <p id="SettingsSessionName"></p>
                             <a href="#">See your profile</a>
                         </div>
                     </div>
@@ -147,18 +149,20 @@
                     <div class="user-profile">
                         <img src="~/images/profile-pic.png">
                         <div>
-                            <p>Petar Misic</p>
+                            @*<p>Petar Misic</p>*@
+                            <p id="FeedSessionName"></p>
                             <small>Public <i class="fa-solid fa-angle-down"></i></small>
                         </div>
                     </div>
 
                     <div class="post-input-container">
-                        <textarea rows="3" placeholder="What's on your mind?"></textarea>
-
+                        <textarea rows="1" placeholder="Title" name="Title"></textarea>
+                        <textarea rows="2" placeholder="What's on your mind?" name="PostContent"></textarea>
                         <div class="add-post-links">
                             <a href="#"><img src="~/images/live-video.png"> Live Video</a>
                             <a href="#"><img src="~/images/photo.png"> Photo Video</a>
                             <a href="#"><img src="~/images/feeling.png"> Feeling/Activity</a>
+                            <input type="button" value="Post" class="activity-button" name="PostBtn">
                         </div>
 
                     </div>
@@ -182,7 +186,9 @@
 
                     <div class="post-row">
                         <div class="activity-icons">
-                            <div><img src="~/images/like-blue.png"> 120</div>
+                            <button type="button" class="activity-button"> <div><img src="~/images/like-blue.png"> 120</div> </button>
+                            
+                            
                             <div><img src="~/images/comments.png"> 45</div>
                             <div><img src="~/images/share.png"> 20</div>
                         </div>
@@ -258,6 +264,5 @@
                     <p>Marina Marinkovic</p>
                 </div>
                </div>
-        <script src="~/js/site.js"></script>
     </body>
 </html>
