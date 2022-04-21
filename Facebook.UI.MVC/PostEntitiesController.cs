@@ -32,7 +32,9 @@ namespace Facebook.UI.MVC
         public async Task<IActionResult> Index()
         {
             PostBsn post = new PostBsn();
-            return View(post.GetPostList());
+            //return View(post.GetPostList());
+
+            return View(post.GetJoinedPostList());
         }
 
         // GET: PostEntities/Details/5

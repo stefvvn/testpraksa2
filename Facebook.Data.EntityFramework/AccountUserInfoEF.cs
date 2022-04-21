@@ -67,6 +67,15 @@ namespace Facebook.Data.EntityFramework
             ApplicationDbContext Db = new ApplicationDbContext();
             return (List<PostEntities>)Db.Post.Where(u => u.UserId == Id);
         }
-    }
 
+        public List<PostEntities> GetJoinedPostList()
+        {
+            ApplicationDbContext Db = new ApplicationDbContext();
+            var q =
+                from p in Db.Post
+                join u in Db.User on p.UserId equals u.UserIdNumber
+                select u;
+            return (List<PostEntities>)q;
+        }
+    }
 }

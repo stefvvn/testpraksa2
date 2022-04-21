@@ -102,5 +102,38 @@ namespace Facebook.Data.SQL
             }
             return posts;
         }
+        public List<PostEntities> GetJoinedPostList()
+        {
+            List<PostEntities> posts = new List<PostEntities>();
+            List<AccountUserInfoEntities> users = new List<AccountUserInfoEntities>();
+            GetCommand("GetJoinedPosts");
+            {
+                SqlDataReader dr = Command.ExecuteReader();
+                while (dr.Read())
+                {
+                    PostEntities post = new PostEntities();
+                    AccountUserInfoEntities user = new AccountUserInfoEntities();
+                    post.PostId = dr.GetIntValue("postId");
+                    post.UserId = (int)dr.GetValue(dr.GetOrdinal("userId"));
+                    post.Content = dr.GetValue(dr.GetOrdinal("content")).ToString();
+                    post.DateMade = (DateTime)dr.GetValue(dr.GetOrdinal("dateMade"));
+                    post.Title = dr.GetValue(dr.GetOrdinal("Title")).ToString();
+
+                    user.UserName = dr.GetValue(dr.GetOrdinal("userName")).ToString();
+                    user.FirstName = dr.GetValue(dr.GetOrdinal("firstName")).ToString();
+                    user.City = dr.GetValue(dr.GetOrdinal("city")).ToString();
+                    user.LastName = dr.GetValue(dr.GetOrdinal("lastName")).ToString();
+                    user.Gender = (byte)dr.GetValue(dr.GetOrdinal("gender"));
+                    user.DateOfBirth = (DateTime)dr.GetValue(dr.GetOrdinal("dateOfBirth"));
+                    user.ProfileDescription = dr.GetValue(dr.GetOrdinal("profileDescription")).ToString();
+                    user.EmailAddress = dr.GetValue(dr.GetOrdinal("emailAddress")).ToString();
+                    user.DateMade = (DateTime)dr.GetValue(dr.GetOrdinal("dateMade"));
+                    users.Add(user);
+                    posts.Add(post);
+                }
+                dr.Close();
+            }
+            return posts;
+        }
     }
 }

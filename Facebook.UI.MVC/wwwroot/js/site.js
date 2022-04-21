@@ -60,10 +60,16 @@ setCookie("LastName", "Vasiljevic", 1);
 setCookie("UserID", "1", 1);
 setCookie("UserName", "TestUserName", 1);
 
-var FirstName = getCookie("FirstName");
-var LastName = getCookie("LastName");
-var UserID = getCookie("UserID");
-var UserName = getCookie("UserName");
+var FullName = getCookie("FirstName") + " " + getCookie("LastName");
 
-document.getElementById('SettingsSessionName').textContent = FirstName + " " + LastName;
-document.getElementById('FeedSessionName').textContent = FirstName + " " + LastName;
+document.getElementById('SettingsSessionName').textContent = FullName;
+document.getElementById('FeedSessionName').textContent = FullName;
+
+//var FirstName = getCookie("FirstName");
+//var LastName = getCookie("LastName");
+//var UserID = getCookie("UserID");
+//var UserName = getCookie("UserName");
+
+//document.getElementById('SettingsSessionName').textContent = FirstName + " " + LastName;
+//document.getElementById('FeedSessionName').textContent = FirstName + " " + LastName;
+
