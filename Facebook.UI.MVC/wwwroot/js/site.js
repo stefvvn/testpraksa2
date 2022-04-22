@@ -37,6 +37,9 @@ else {
     localStorage.setItem("theme", "light");
 }
 
+
+
+
 function setCookie(cName, cValue, expDays) {
     let date = new Date();
     date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
@@ -65,11 +68,8 @@ var FullName = getCookie("FirstName") + " " + getCookie("LastName");
 document.getElementById('SettingsSessionName').textContent = FullName;
 document.getElementById('FeedSessionName').textContent = FullName;
 
-//var FirstName = getCookie("FirstName");
-//var LastName = getCookie("LastName");
-//var UserID = getCookie("UserID");
-//var UserName = getCookie("UserName");
+var emailAddress = document.getElementById('emailBox').textContent;
 
-//document.getElementById('SettingsSessionName').textContent = FirstName + " " + LastName;
-//document.getElementById('FeedSessionName').textContent = FirstName + " " + LastName;
-
+loginBtn.onclick = function () {
+    setCookie("EmailAddress", document.getElementById('emailBox').textContent, 1);
+}
