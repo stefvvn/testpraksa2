@@ -16,7 +16,7 @@ namespace Facebook.UI.MVC.Data
         }
 
         public DbSet<Facebook.Entities.PostEntities> PostEntities { get; set; }
-
+        public DbSet<Facebook.Entities.PostLikeEntities> PostLikeEntities { get; set; }
         public DbSet<Facebook.Entities.AccountUserInfoEntities> AccountUserInfoEntities { get; set; }
     }
 }

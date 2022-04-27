@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Facebook.Data.SQL;
 using Facebook.Entities;
 using Facebook.Data.EntityFramework;
+using Facebook.Interfaces;
 
 namespace Facebook.Business
 {
@@ -33,8 +34,8 @@ namespace Facebook.Business
         }
         public List<PostEntities> GetPostList()
         {
-            PostData data = new PostData();
-            //AccountUserInfoEF data = new AccountUserInfoEF();
+            //PostData data = new PostData();
+            IPosts data = new PostsEF();
             return data.GetPostList();
         }
         public List<PostEntities> GetPostsByUser(int userId)

@@ -21,14 +21,22 @@ namespace Facebook.UI.MVC.Controllers
 
         public IActionResult Index()
         {
-            //CookieOptions cookieOptions = new CookieOptions();
-            //HttpContext.Response.Cookies.Append("first_request", DateTime.Now.ToString(), cookieOptions);
-            //HttpContext.Response.Cookies.Append("user_id", "1");
-            //HttpContext.Response.Cookies.Append("user_name", "UserName");
-            //HttpContext.Response.Cookies.Append("first_name", "Vuk");
-            //HttpContext.Response.Cookies.Append("last_name", "Vasiljević");
-
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login([Bind("email,password")] LoginModel accountUserInfoEntities)
+        {
+            AccountUserInfoBsn bsn = new AccountUserInfoBsn();
+            AccountUserInfoEntities user = bsn.GetUserByEmail(accountUserInfoEntities.email);
+            CookieOptions cookieOptions = new CookieOptions();
+            HttpContext.Response.Cookies.Append("email", accountUserInfoEntities.email, cookieOptions);
+            HttpContext.Response.Cookies.Append("userID", user.UserIdNumber.ToString(), cookieOptions);
+            HttpContext.Response.Cookies.Append("firstName", user.FirstName.ToString(), cookieOptions);
+            HttpContext.Response.Cookies.Append("lastName", user.LastName.ToString(), cookieOptions);
+            HttpContext.Response.Cookies.Append("userName", user.UserName.ToString(), cookieOptions);
+            Response.Redirect("https://localhost:7029/PostEntities");
+            return View("Index");
         }
 
         public IActionResult Privacy()

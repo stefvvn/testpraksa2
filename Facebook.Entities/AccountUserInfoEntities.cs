@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 namespace Facebook.Entities
 {
     [Table("userAccountInfo")]
-
     public class AccountUserInfoEntities
     {
         [Key]

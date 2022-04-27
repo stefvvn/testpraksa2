@@ -180,6 +180,11 @@ namespace Facebook.Data.SQL
         {
             throw new NotImplementedException();
         }
+
+        public AccountUserInfoEntities GetUserByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

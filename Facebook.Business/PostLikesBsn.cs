@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Facebook.Data.SQL;
 using Facebook.Entities;
+using Facebook.Interfaces;
 
 namespace Facebook.Business
 {

@@ -56,7 +56,6 @@
                     <div class="user-profile">
                         <img src="~/images/profile-pic.png">
                         <div class="">
-                            @*<p>Petar Misic</p>*@
                             <p id="SettingsSessionName"></p>
                             <a href="#">See your profile</a>
                         </div>
@@ -148,7 +147,6 @@
                     <div class="user-profile">
                         <img src="~/images/profile-pic.png">
                         <div>
-                            @*<p>Petar Misic</p>*@
                             <p id="FeedSessionName"></p>
                             <small>Public <i class="fa-solid fa-angle-down"></i></small>
                         </div>
@@ -173,7 +171,7 @@
                         <div class="user-profile">
                             <img src="~/images/profile-pic.png">
                             <div>
-                                <p><a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@item.UserId"> @Html.DisplayFor(modelItem => item.UserId) @Html.DisplayFor(modelItem => item.User.FirstName)</a></p>
+                                <p><a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@item.UserId"> @*@Html.DisplayFor(modelItem => item.UserId)*@ @Html.DisplayFor(modelItem => item.User.FirstName)</a></p>
                                 <span><a asp-controller="PostEntities" asp-action="Details" asp-route-id="@item.PostId">@Html.DisplayFor(modelItem => item.DateMade)</a></span>
                             </div>
                         </div>

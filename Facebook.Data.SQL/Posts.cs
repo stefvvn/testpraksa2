@@ -67,7 +67,6 @@ namespace Facebook.Data.SQL
                     post.Content = dr.GetValue(dr.GetOrdinal("content")).ToString();
                     post.DateMade = (DateTime)dr.GetValue(dr.GetOrdinal("dateMade"));
                     post.Title = dr.GetValue(dr.GetOrdinal("Title")).ToString();
-                    post.User.FirstName = dr.GetValue(dr.GetOrdinal("firstName")).ToString();
                     posts.Add(post);
                 }
                 dr.Close();
@@ -97,7 +96,6 @@ namespace Facebook.Data.SQL
                     post.Content = dr.GetValue(dr.GetOrdinal("content")).ToString();
                     post.DateMade = (DateTime)dr.GetValue(dr.GetOrdinal("dateMade"));
                     post.Title = dr.GetValue(dr.GetOrdinal("Title")).ToString();
-                    //post.User.LastName = dr.GetValue(dr.GetOrdinal("lastName")).ToString();
                     posts.Add(post);
                 }
                 dr.Close();

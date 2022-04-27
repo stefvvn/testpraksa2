@@ -58,18 +58,30 @@ function getCookie(cName) {
     return res;
 }
 
-setCookie("FirstName", "Vuk", 1);
-setCookie("LastName", "Vasiljevic", 1);
-setCookie("UserID", "1", 1);
-setCookie("UserName", "TestUserName", 1);
+//setCookie("FirstName", "Vuk", 1);
+//setCookie("LastName", "Vasiljevic", 1);
+//setCookie("UserID", "1", 1);
+//setCookie("UserName", "TestUserName", 1);
 
-var FullName = getCookie("FirstName") + " " + getCookie("LastName");
+var FullName = getCookie("firstName") + " " + getCookie("lastName");
 
 document.getElementById('SettingsSessionName').textContent = FullName;
 document.getElementById('FeedSessionName').textContent = FullName;
 
-var emailAddress = document.getElementById('emailBox').textContent;
+function InsertPostLike() {
+    var userId = getCookie("userID");
+    //var postId = getElementById("postIdNumber");
+    var postId = getElementById(item.PostId);
+    var postLikeStatus = 1;
 
-loginBtn.onclick = function () {
-    setCookie("EmailAddress", document.getElementById('emailBox').textContent, 1);
+}
+
+
+var postBtn = document.getElementById("postBtn");
+
+postBtn.onclick = function () {
+    var userId = getCookie("userID");
+    var title = getElementById("TitleBox").textContent;
+    var content = getElementById("ContentBox").textContent;
+
 }

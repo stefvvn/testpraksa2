@@ -54,6 +54,7 @@ namespace Facebook.Data.EntityFramework
 
         public virtual DbSet<AccountUserInfoEntities> User { get; set; }
         public virtual DbSet<PostEntities> Post { get; set; }
+        public virtual DbSet<PostLikeEntities> PostLike { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
