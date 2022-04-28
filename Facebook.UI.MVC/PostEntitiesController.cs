@@ -77,6 +77,20 @@ namespace Facebook.UI.MVC
             return View(post.InsertPost(postEntities));
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreatePost(int UserID, string Title, string Content)
+        {
+            PostEntities post = new PostEntities();
+            PostBsn postbsn = new PostBsn();
+
+            post.UserId = UserID;
+            post.Title = Title;
+            post.Content = Content;
+
+            return View(postbsn.InsertPost(post));
+        }
+
         // GET: PostEntities/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
