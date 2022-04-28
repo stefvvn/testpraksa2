@@ -327,7 +327,7 @@ nav {
     width: 100%;
     background: var(--bg-color);
     border-radius: 3px;
-    padding: 20px;
+    padding: 16px;
     color: #626262;
 }
 
@@ -391,7 +391,7 @@ nav {
     width: 100%;
     background: var(--bg-color);
     border-radius: 6px;
-    padding: 20px;
+    padding: 12px 16px;
     /*color: #626262;*/
     color: var(--text-color);
     margin: 20px 0;
@@ -407,6 +407,7 @@ nav {
     /*color: #9a9a9a;*/
     color: var(--text-color);
     margin: 10px, 0;
+    margin-bottom: 2px;
     font-size: 15px;
 }
 
@@ -497,7 +498,7 @@ nav {
 }
 
 .user-profile a {
-    font-size: 12px;
+    font-size: 15px;
     /*color: #1876f2;*/
     color: var(--text-color);
     text-decoration: none;

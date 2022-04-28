@@ -13,6 +13,10 @@ namespace Facebook.Entities
     [Table("userAccountInfo")]
     public class AccountUserInfoEntities
     {
+        public AccountUserInfoEntities()
+        {
+            DateMade = DateTime.Now;
+        }
         [Key]
         public int UserIdNumber { get; set; }
         public string UserName { get; set; }
@@ -23,6 +27,8 @@ namespace Facebook.Entities
         public Byte Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string ProfileDescription { get; set; }
+
+        [Column(TypeName = "DateTime2")]
         public DateTime DateMade { get; set; }
         public string GenderString
         {

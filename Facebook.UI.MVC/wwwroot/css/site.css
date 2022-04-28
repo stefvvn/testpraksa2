@@ -85,7 +85,7 @@ body {
 
         #header form input[type="text"] {
             margin-top: 3px;
-            margin-bottom: 3px;
+            /*margin-bottom: 3px;*/
             width: 150px;
             border: 1px solid #08298A;
             height: 25px;
@@ -103,10 +103,11 @@ body {
 
         #header form input[type="submit"] {
             height: 25px;
-            margin-top: 20px;
+            margin-top: 23px;
             background-color: #084B8A;
             color: white;
             border: 1px solid #08298A;
+            padding: 1px 5px 23px 5px;
         }
 
 #wrapper {
@@ -157,14 +158,16 @@ body {
             margin-top: 10px;
         }
 
-            #wrapper #div2 li #firstname {
+/*            #wrapper #div2 li #firstname {
                 width: 49%;
-            }
+            }*/
 
-            #wrapper #div2 li #surname {
+/*            #wrapper #div2 li #lastname {
                 margin-left: 2%;
                 width: 49%;
-            }
+                float: right;
+                margin-top: -50px;
+            }*/
 
             #wrapper #div2 li input[type="text"] {
                 width: 100%;

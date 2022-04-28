@@ -1,4 +1,5 @@
 ﻿@model LoginModel
+@*@model Facebook.Entities.AccountUserInfoEntities*@
 @{
     ViewData["Title"] = "Home Page"; 
 }
@@ -23,8 +24,8 @@
  <li id="sitename"><a href="https://localhost:7029/PostEntities">talkerscode</a></li>
  <form asp-action="Login">
  <li>Email Address<br> <input asp-for="email" class="form-control" /></li>
- <li>Password<br><input asp-for="password" class="form-control" /><br><a href="">Forgotten account?</a> </li>
- <li><input type="submit" value="Create" id="Submit" class="btn btn-defualt" onclick="location.href='@Url.Action("Login", "Home")'" onended="location.href='@Url.Action("PostEntities")'" /></li>
+ <li>Password<br><input asp-for="password" class="form-control" /><a href="">Forgotten account?</a> </li>
+ <li><input type="submit" value="Create" id="Submit" class="btn btn-defualt" onclick="location.href='@Url.Action("Login", "Home")'" /></li>
  </form> 
  </div>
 </div>
@@ -41,37 +42,50 @@
 <p>It's free and always will be.</p>
 <form asp-action="Create">
 
-<li>                 <label asp-for="User.UserName" class="control-label"></label>
-                <input asp-for="User.UserName" class="form-control" />
-                <span asp-validation-for="User.UserName" class="text-danger"></span><li> 
+<li>            <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span><li> 
 
-<li>            <label asp-for="User.FirstName" class="control-label"></label>
-                <input asp-for="User.FirstName" class="form-control" />
-                <span asp-validation-for="User.FirstName" class="text-danger"></span>    
-                <label asp-for="User.LastName" class="control-label"></label>
-                <input asp-for="User.LastName" class="form-control" />
-                <span asp-validation-for="User.LastName" class="text-danger"></span></li>
+<li>            <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span></li>    
+                
+<li>            <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span></li>
 
+<li>            <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span></li>
 
-<li>            <label asp-for="User.EmailAddress" class="control-label"></label>
-                <input asp-for="User.EmailAddress" class="form-control" />
-                <span asp-validation-for="User.EmailAddress" class="text-danger"></span></li>
+<li>            <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span></li>
 
-<li>            <label asp-for="User.City" class="control-label"></label>
-                <input asp-for="User.City" class="form-control" />
-                <span asp-validation-for="User.City" class="text-danger"></span></li>
-
-<li>               <label asp-for="User.ProfileDescription" class="control-label"></label>
-                <input asp-for="User.ProfileDescription" class="form-control" />
-                <span asp-validation-for="User.ProfileDescription" class="text-danger"></span></li>
+<li>            <label asp-for="ProfileDescription" class="control-label"></label>
+                <input asp-for="ProfileDescription" class="form-control" />
+                <span asp-validation-for="ProfileDescription" class="text-danger"></span></li>
 <li>
-                <label asp-for="User.DateOfBirth" class="control-label"></label>
-                <input asp-for="User.DateOfBirth" class="form-control" />
-                <span asp-validation-for="User.DateOfBirth" class="text-danger"></span>
-</li>
-<li>            <label asp-for="User.Gender" class="control-label"></label>
-                <input asp-for="User.Gender" class="form-control" />
-                <span asp-validation-for="User.Gender" class="text-danger"></span></li>
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span></li>
+
+<li>
+                <label asp-for="Gender" class="control-label"></label>
+                <br />
+                <select asp-for="Gender">
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                    <option value="3">Unspecified</option>
+                </select> 
+                <span asp-validation-for="Gender" class="text-danger"></span></li>
+
+
+@*<li>            <label asp-for="Gender" class="control-label"></label>
+                <input asp-for="Gender" class="form-control" />
+                <span asp-validation-for="Gender" class="text-danger"></span>
+</li>*@
+<br />
 <li id="terms">By clicking Create an account, you agree to our <a href="">Terms</a> and that <br>you have read our <a href="">Data Policy</a>, including our <a href="">Cookie Use</a>.</li>
 
 <li><input type="submit" value="Create" class="btn btn-primary" /></li>

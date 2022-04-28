@@ -76,18 +76,9 @@ namespace Facebook.Data.EntityFramework
 
         public AccountUserInfoEntities GetUserByEmail(string email)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-            return (AccountUserInfoEntities)db.User.First(u => u.EmailAddress == email);
+            ApplicationDbContext Db = new ApplicationDbContext();
+            return (AccountUserInfoEntities)Db.User.First(u => u.EmailAddress == email);
         }
 
-        public List<PostEntities> GetJoinedPostList()
-        {
-            ApplicationDbContext Db = new ApplicationDbContext();
-            var q =
-                from p in Db.Post
-                join u in Db.User on p.UserId equals u.UserIdNumber
-                select u;
-            return (List<PostEntities>)q;
-        }
     }
 }

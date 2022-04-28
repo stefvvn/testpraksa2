@@ -24,16 +24,11 @@ namespace Facebook.Data.EntityFramework
     {
 
         private static string ConnectionString
-
         {
-
             get
-
             {
                 return "Data Source = DESKTOP-ORJTLLV\\SQLEXPRESS; Initial Catalog = praksaDrustvenaMreza; Integrated Security = SSPI;";
-
             }
-
         }
 
 

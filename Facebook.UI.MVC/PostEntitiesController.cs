@@ -10,6 +10,7 @@ using Facebook.Entities;
 using Facebook.UI.MVC.Data;
 using Facebook.Business;
 using Microsoft.AspNetCore.Http;
+using Facebook.UI.MVC.Models;
 
 namespace Facebook.UI.MVC
 {
@@ -23,19 +24,29 @@ namespace Facebook.UI.MVC
         }
 
         // GET: PostEntities
-        //public async Task<IActionResult> Index()
-        //{
-        //    PostBsn post = new PostBsn();
-        //    return View(post.GetPostList());
-        //}
-
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index() 
         {
-            PostBsn post = new PostBsn();
-            return View(post.GetPostList());
-            //return View(post.GetJoinedPostList());
-            //return View(_context.PostEntities.ToList());
+            AccountUserInfoBsn userbsn = new AccountUserInfoBsn();
+            List<AccountUserInfoEntities> users = userbsn.GetUserList();
 
+            PostBsn postbsn = new PostBsn();
+            List<PostEntities> posts = postbsn.GetPostList();
+
+            var joinedModels = (from p in posts
+                 join u in users on p.UserId equals u.UserIdNumber
+                 select new FeedModel()
+                 {
+                     PostId = p.PostId,
+                     UserId = u.UserIdNumber,
+                     Content = p.Content,
+                     DateMade = p.DateMade,
+                     Title = p.Title,
+                     FirstName = u.FirstName,
+                     LastName = u.LastName
+                 }).ToList();
+            return View(joinedModels);    
+
+            //return View(posts);
         }
 
         // GET: PostEntities/Details/5
