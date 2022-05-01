@@ -33,17 +33,18 @@ namespace Facebook.UI.MVC
             List<PostEntities> posts = postbsn.GetPostList();
 
             var joinedModels = (from p in posts
-                 join u in users on p.UserId equals u.UserIdNumber
-                 select new FeedModel()
-                 {
-                     PostId = p.PostId,
-                     UserId = u.UserIdNumber,
-                     Content = p.Content,
-                     DateMade = p.DateMade,
-                     Title = p.Title,
-                     FirstName = u.FirstName,
-                     LastName = u.LastName
-                 }).ToList();
+                                join u in users on p.UserId equals u.UserIdNumber
+                                select new FeedModel()
+                                {
+                                    PostId = p.PostId,
+                                    UserId = u.UserIdNumber,
+                                    Content = p.Content,
+                                    DateMade = p.DateMade,
+                                    Title = p.Title,
+                                    FirstName = u.FirstName,
+                                    LastName = u.LastName
+                                }).ToList();
+
             return View(joinedModels);    
 
             //return View(posts);
@@ -70,7 +71,8 @@ namespace Facebook.UI.MVC
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
+        [IgnoreAntiforgeryToken]
         public async Task<IActionResult> Create([Bind("PostId,UserId,Content,DateMade,Title")] PostEntities postEntities)
         {
             PostBsn post = new PostBsn();

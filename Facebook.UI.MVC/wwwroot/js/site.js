@@ -38,8 +38,6 @@ else {
 }
 
 
-
-
 function setCookie(cName, cValue, expDays) {
     let date = new Date();
     date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
@@ -74,11 +72,13 @@ postBtn.onclick = function () {
     var userId = getCookie("userID");
     var title = document.getElementById("TitleBox").value;
     var content = document.getElementById("ContentBox").value;
+
     alert(title);
     alert(content);
+
     $.ajax({
         type: "POST",
-        url: "PostEntities/CreatePost",
+        url: "PostEntities/Create",
         data: { 'UserID': userId, 'Title': title, 'Content': content },
         success: function (response) {
             // ...
@@ -88,4 +88,5 @@ postBtn.onclick = function () {
             alert(thrownError);
         }
     });
+
 }
