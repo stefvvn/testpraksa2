@@ -38,8 +38,6 @@ else {
 }
 
 
-
-
 function setCookie(cName, cValue, expDays) {
     let date = new Date();
     date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
@@ -68,20 +66,51 @@ var FullName = getCookie("firstName") + " " + getCookie("lastName");
 document.getElementById('SettingsSessionName').textContent = FullName;
 document.getElementById('FeedSessionName').textContent = FullName;
 
-function InsertPostLike() {
-    var userId = getCookie("userID");
-    //var postId = getElementById("postIdNumber");
-    var postId = getElementById(item.PostId);
-    var postLikeStatus = 1;
-
-}
-
-
-var postBtn = document.getElementById("postBtn");
+var postBtn = document.getElementById("PostBtn");
 
 postBtn.onclick = function () {
     var userId = getCookie("userID");
-    var title = getElementById("TitleBox").textContent;
-    var content = getElementById("ContentBox").textContent;
+    var title = document.getElementById("TitleBox").value;
+    var content = document.getElementById("ContentBox").value;
+
+    alert(title);
+    alert(content);
+
+    $.ajax({
+        type: "POST",
+        url: "PostEntities/Create",
+        data: { 'UserID': userId, 'Title': title, 'Content': content },
+        success: function (response) {
+            // ...
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr);
+            alert(thrownError);
+        }
+    });
+
+}
+
+var likeBtn = document.getElementById("LikeBtn");
+
+likeBtn.onclick = function () {
+    var userId = getCookie("userID");
+    var postId = document.getElementById("TitleBox").value;
+    var likeStatus = ////////////////
+
+    alert(postId);
+
+    $.ajax({
+        type: "POST",
+        url: "PostEntities/Create",
+        data: { 'UserID': userId, 'Title': title, 'Content': content },
+        success: function (response) {
+            // ...
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr);
+            alert(thrownError);
+        }
+    });
 
 }

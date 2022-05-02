@@ -12,5 +12,6 @@ namespace Facebook.UI.MVC.Models
         public string Title { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        //public string PostLikeStatusString { get; set; }
     }
 }

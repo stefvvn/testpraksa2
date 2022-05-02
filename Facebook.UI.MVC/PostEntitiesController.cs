@@ -33,17 +33,18 @@ namespace Facebook.UI.MVC
             List<PostEntities> posts = postbsn.GetPostList();
 
             var joinedModels = (from p in posts
-                 join u in users on p.UserId equals u.UserIdNumber
-                 select new FeedModel()
-                 {
-                     PostId = p.PostId,
-                     UserId = u.UserIdNumber,
-                     Content = p.Content,
-                     DateMade = p.DateMade,
-                     Title = p.Title,
-                     FirstName = u.FirstName,
-                     LastName = u.LastName
-                 }).ToList();
+                                join u in users on p.UserId equals u.UserIdNumber
+                                select new FeedModel()
+                                {
+                                    PostId = p.PostId,
+                                    UserId = u.UserIdNumber,
+                                    Content = p.Content,
+                                    DateMade = p.DateMade,
+                                    Title = p.Title,
+                                    FirstName = u.FirstName,
+                                    LastName = u.LastName
+                                }).ToList();
+
             return View(joinedModels);    
 
             //return View(posts);
@@ -70,11 +71,26 @@ namespace Facebook.UI.MVC
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
+        [IgnoreAntiforgeryToken]
         public async Task<IActionResult> Create([Bind("PostId,UserId,Content,DateMade,Title")] PostEntities postEntities)
         {
             PostBsn post = new PostBsn();
             return View(post.InsertPost(postEntities));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreatePost(int UserID, string Title, string Content)
+        {
+            PostEntities post = new PostEntities();
+            PostBsn postbsn = new PostBsn();
+
+            post.UserId = UserID;
+            post.Title = Title;
+            post.Content = Content;
+
+            return View(postbsn.InsertPost(post));
         }
 
         // GET: PostEntities/Edit/5
@@ -123,7 +139,6 @@ namespace Facebook.UI.MVC
             PostBsn post = new PostBsn();
             View(post.DeletePostByID(id.Value));
             return RedirectToAction(nameof(Index));
-
         }
 
         private bool PostEntitiesExists(int id)

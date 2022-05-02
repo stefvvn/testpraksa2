@@ -8,7 +8,8 @@ using Facebook.Entities;
 namespace Facebook.Interfaces
 {
     public interface IPostLikes
-    { 
+    {
+        List<PostLikeEntities> GetPostLikes();
         List<PostLikeEntities> GetPostLikesByPostId(int postId);
         PostLikeEntities InsertPostLike(PostLikeEntities postLike);
         PostLikeEntities UpdatePostLike(PostLikeEntities postLike);
