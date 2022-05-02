@@ -80,7 +80,8 @@ namespace Facebook.UI.MVC
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
+        [IgnoreAntiforgeryToken]
         public IActionResult CreatePost(int UserID, string Title, string Content)
         {
             PostEntities post = new PostEntities();

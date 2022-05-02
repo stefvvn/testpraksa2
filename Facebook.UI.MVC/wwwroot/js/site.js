@@ -78,7 +78,10 @@ postBtn.onclick = function () {
 
     $.ajax({
         type: "POST",
-        url: "PostEntities/Create",
+        //url: "PostEntities/CreatePost", ERROR 500 = Nema CreatePost View
+        //url: "PostEntities/Index", RADI
+        //url: "PostEntities/Create", RADI
+        url: "PostEntities/Index",
         data: { 'UserID': userId, 'Title': title, 'Content': content },
         success: function (response) {
             // ...
@@ -91,26 +94,26 @@ postBtn.onclick = function () {
 
 }
 
-var likeBtn = document.getElementById("LikeBtn");
+//var likeBtn = document.getElementById("LikeBtn");
 
-likeBtn.onclick = function () {
-    var userId = getCookie("userID");
-    var postId = document.getElementById("TitleBox").value;
-    var likeStatus = ////////////////
+//likeBtn.onclick = function () {
+//    var userId = getCookie("userID");
+//    var postId = document.getElementById("TitleBox").value;
+//    var likeStatus = ////////////////
 
-    alert(postId);
+//    alert(postId);
 
-    $.ajax({
-        type: "POST",
-        url: "PostEntities/Create",
-        data: { 'UserID': userId, 'Title': title, 'Content': content },
-        success: function (response) {
-            // ...
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            alert(xhr);
-            alert(thrownError);
-        }
-    });
+//    $.ajax({
+//        type: "POST",
+//        url: "PostEntities/Create",
+//        data: { 'UserID': userId, 'Title': title, 'Content': content },
+//        success: function (response) {
+//            // ...
+//        },
+//        error: function (xhr, ajaxOptions, thrownError) {
+//            alert(xhr);
+//            alert(thrownError);
+//        }
+//    });
 
-}
+//}
