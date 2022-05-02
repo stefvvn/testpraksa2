@@ -13,6 +13,11 @@ namespace Facebook.Data.EntityFramework
 {
     public class PostLikesEF : SqlBaseData, IPostLikes
     {
+        public List<PostLikeEntities> GetPostLikes()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            return db.PostLike.ToList();
+        }
         public List<PostLikeEntities> GetPostLikesByPostId(int postId)
         {
             ApplicationDbContext db = new ApplicationDbContext();

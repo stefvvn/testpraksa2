@@ -139,7 +139,6 @@ namespace Facebook.UI.MVC
             PostBsn post = new PostBsn();
             View(post.DeletePostByID(id.Value));
             return RedirectToAction(nameof(Index));
-
         }
 
         private bool PostEntitiesExists(int id)

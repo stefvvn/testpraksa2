@@ -90,3 +90,27 @@ postBtn.onclick = function () {
     });
 
 }
+
+var likeBtn = document.getElementById("LikeBtn");
+
+likeBtn.onclick = function () {
+    var userId = getCookie("userID");
+    var postId = document.getElementById("TitleBox").value;
+    var likeStatus = ////////////////
+
+    alert(postId);
+
+    $.ajax({
+        type: "POST",
+        url: "PostEntities/Create",
+        data: { 'UserID': userId, 'Title': title, 'Content': content },
+        success: function (response) {
+            // ...
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr);
+            alert(thrownError);
+        }
+    });
+
+}

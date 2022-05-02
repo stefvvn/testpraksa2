@@ -34,7 +34,6 @@ namespace Facebook.Business
         }
         public List<PostEntities> GetPostList()
         {
-            //PostData data = new PostData();
             IPosts data = new PostsEF();
             return data.GetPostList();
         }

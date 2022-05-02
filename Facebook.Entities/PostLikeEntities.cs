@@ -9,7 +9,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Facebook.Entities
 {
     [Table("postLikes")]
-
     public class PostLikeEntities
     {
         [Key]
