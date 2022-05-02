@@ -81,7 +81,7 @@ postBtn.onclick = function () {
         //url: "PostEntities/CreatePost", ERROR 500 = Nema CreatePost View
         //url: "PostEntities/Index", RADI
         //url: "PostEntities/Create", RADI
-        url: "PostEntities/Index",
+        url: "PostEntities/Create",
         data: { 'UserID': userId, 'Title': title, 'Content': content },
         success: function (response) {
             // ...

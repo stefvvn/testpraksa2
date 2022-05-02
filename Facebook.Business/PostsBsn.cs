@@ -14,7 +14,7 @@ namespace Facebook.Business
     {
         public PostEntities InsertPost(PostEntities post)
         {
-            PostData data = new PostData();
+            IPosts data = new PostsEF();
             return data.InsertPost(post);
         }
         public PostEntities GetPostByID(int Id)
