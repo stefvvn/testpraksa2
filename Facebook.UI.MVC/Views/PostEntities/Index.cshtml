@@ -2,6 +2,7 @@
 @model IEnumerable<FeedModel>
 @{
     ViewData["Title"] = "Index";
+    int i = 1;
 }
  
 <!DOCTYPE html>
@@ -166,8 +167,13 @@
                     </div>
                 </div>
 
+                
                 @foreach (var item in Model) {
-                 <div class="post-container">
+                
+                <div class="post-container">
+                    @Html.HiddenFor(modelItem => item.PostId, new {id = "PostId" + i})
+                    @Html.HiddenFor(modelItem => item.PostLikeStatus, new {id = "PostLikeStatus" + i})
+                    @Html.HiddenFor(modelItem => item.PostLikeStatusString, new {id = "PostLikeStatusString" + i})
                     <div class="post-row">
                         <div class="user-profile">
                             <img src="~/images/profile-pic.png">
@@ -184,8 +190,7 @@
 
                     <div class="post-row">
                         <div class="activity-icons">
-                            <button type="button" class="activity-button" id="LikeBtn" name="LikeBtn"> <div><img src="~/images/like-blue.png"> 120</div> </button>
-                            
+                            <button type="button" class="like-button" id="LikeBtn-@i" onclick="likeClick()"> <div><img src="~/images/like-blue.png"> 120</div> </button>
                             <div><img src="~/images/comments.png"> 45</div>
                             <div><img src="~/images/share.png"> 20</div>
                         </div>
@@ -194,6 +199,7 @@
                         </div>
                     </div>
                   </div>
+                  i++;
                           }
                <div>
                     <button type="button" class="load-more-button"> Load More</button>

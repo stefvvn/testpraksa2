@@ -24,8 +24,8 @@
  <li id="sitename"><a href="https://localhost:7029/PostEntities">talkerscode</a></li>
  <form asp-action="Login">
  <li>Email Address<br> <input asp-for="email" class="form-control" /></li>
- <li>Password<br><input asp-for="password" class="form-control" /><a href="">Forgotten account?</a> </li>
- <li><input type="submit" value="Create" id="Submit" class="btn btn-defualt" onclick="location.href='@Url.Action("Login", "Home")'" /></li>
+ <li>Password<br><input asp-for="password" type="password" class="form-control" /><a href="">Forgotten account?</a> </li>
+ <li><input type="submit" value="Log In" id="Submit" class="btn btn-defualt" onclick="location.href='@Url.Action("Login", "Home")'" /></li>
  </form> 
  </div>
 </div>

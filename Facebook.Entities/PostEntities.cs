@@ -23,6 +23,6 @@ namespace Facebook.Entities
         [Column(TypeName = "DateTime2")]
         public DateTime DateMade { get; set; }
         public string Title { get; set; }
-        public AccountUserInfoEntities User { get; set; }
+        public virtual AccountUserInfoEntities User { get; set; }
     }
 }

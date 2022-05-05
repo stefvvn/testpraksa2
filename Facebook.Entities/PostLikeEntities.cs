@@ -15,14 +15,14 @@ namespace Facebook.Entities
         public int PostLikeId { get; set; }
         public int PostId { get; set; }
         public int UserId { get; set; }
-        public int PostLikeStatus { get; set; }
+        public byte PostLikeStatus { get; set; }
         public string PostLikeStatusString
         {
             get
             {
                 if (PostLikeStatus == 1)
                     return "Liked";
-                return "N/A";
+                return "Not Liked";
             }
         }
     }

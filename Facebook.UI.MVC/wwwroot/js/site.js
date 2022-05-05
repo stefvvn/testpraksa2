@@ -23,7 +23,6 @@ darkBtn.onclick = function () {
 
 }
 
-
 if (localStorage.getItem("theme") == "light") {
     darkBtn.classList.remove("dark-btn-on");
     document.body.classList.remove("dark-theme");
@@ -56,11 +55,6 @@ function getCookie(cName) {
     return res;
 }
 
-//setCookie("FirstName", "Vuk", 1);
-//setCookie("LastName", "Vasiljevic", 1);
-//setCookie("UserID", "1", 1);
-//setCookie("UserName", "TestUserName", 1);
-
 var FullName = getCookie("firstName") + " " + getCookie("lastName");
 
 document.getElementById('SettingsSessionName').textContent = FullName;
@@ -72,48 +66,45 @@ postBtn.onclick = function () {
     var userId = getCookie("userID");
     var title = document.getElementById("TitleBox").value;
     var content = document.getElementById("ContentBox").value;
-
-    alert(title);
-    alert(content);
-
     $.ajax({
         type: "POST",
-        //url: "PostEntities/CreatePost", ERROR 500 = Nema CreatePost View
-        //url: "PostEntities/Index", RADI
-        //url: "PostEntities/Create", RADI
+        //url: "PostEntities/CreatePost", /*ERROR 500 = Nema CreatePost View*/
         url: "PostEntities/Create",
         data: { 'UserID': userId, 'Title': title, 'Content': content },
         success: function (response) {
-            // ...
+            //document.getElementById("TitleBox").value = '';
+            //document.getElementById("ContentBox").value = '';
+            alert("Made post:  " + title + "  " + content);
+            location.reload()
         },
         error: function (xhr, ajaxOptions, thrownError) {
             alert(xhr);
-            alert(thrownError);
         }
     });
-
 }
 
-//var likeBtn = document.getElementById("LikeBtn");
+//var postContainer = document.getElementsByClassName("post-container")[0];
+//var likeBtn = document.getElementsByClassName("like-button")[0];
 
-//likeBtn.onclick = function () {
-//    var userId = getCookie("userID");
-//    var postId = document.getElementById("TitleBox").value;
-//    var likeStatus = ////////////////
+function likeClick() {
+    var userId = getCookie("userID");
+    var postId = document.getElementById("PostId1").value;
+    var postLikeStatus = document.getElementById("PostLikeStatus1").value;
 
-//    alert(postId);
+    alert("UserId: " + userId);
+    alert("PostId: " + postId);
+    alert("PostLikeStatus: " + postLikeStatus);
 
-//    $.ajax({
-//        type: "POST",
-//        url: "PostEntities/Create",
-//        data: { 'UserID': userId, 'Title': title, 'Content': content },
-//        success: function (response) {
-//            // ...
-//        },
-//        error: function (xhr, ajaxOptions, thrownError) {
-//            alert(xhr);
-//            alert(thrownError);
-//        }
-//    });
-
-//}
+        $.ajax({
+            type: "POST",
+            url: "PostLikeEntities/Create",
+            data: { 'UserId': userId, 'PostId': postId, 'PostLikeStatus': 1 },
+            success: function (response) {
+                alert("Liked Post: " + postId + "  UserID: " + userId);
+                location.reload()
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr);
+            }
+        });
+    }

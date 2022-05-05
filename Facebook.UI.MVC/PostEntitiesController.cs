@@ -26,29 +26,71 @@ namespace Facebook.UI.MVC
         // GET: PostEntities
         public async Task<IActionResult> Index() 
         {
-            AccountUserInfoBsn userbsn = new AccountUserInfoBsn();
-            List<AccountUserInfoEntities> users = userbsn.GetUserList();
-
             PostBsn postbsn = new PostBsn();
             List<PostEntities> posts = postbsn.GetPostList();
 
-            var joinedModels = (from p in posts
-                                join u in users on p.UserId equals u.UserIdNumber
+            AccountUserInfoBsn userbsn = new AccountUserInfoBsn();
+            List<AccountUserInfoEntities> users = userbsn.GetUserList();
+
+            PostLikesBsn postlikesbsn = new PostLikesBsn();
+            List<PostLikeEntities> postlikes = postlikesbsn.GetPostLikes();
+
+            int loggedInUser = Convert.ToInt32(HttpContext.Request.Cookies["userID"]);
+
+            //var joinedModels = (from post in posts
+            //                    join user in users
+            //                    on post.UserId equals user.UserIdNumber
+            //                    orderby post.PostId descending
+            //                    select new FeedModel()
+            //                    {
+            //                        PostId = post.PostId,
+            //                        Content = post.Content,
+            //                        DateMade = post.DateMade,
+            //                        Title = post.Title,
+            //                        UserId = user.UserIdNumber,
+            //                        FirstName = user.FirstName,
+            //                        LastName = user.LastName
+            //                    }).ToList();
+
+            var joinedModels = (from post in posts
+                                join user in users on post.UserId equals user.UserIdNumber
+                                join like in postlikes on post.PostId equals like.PostId
+                                orderby post.PostId descending
                                 select new FeedModel()
                                 {
-                                    PostId = p.PostId,
-                                    UserId = u.UserIdNumber,
-                                    Content = p.Content,
-                                    DateMade = p.DateMade,
-                                    Title = p.Title,
-                                    FirstName = u.FirstName,
-                                    LastName = u.LastName
+                                    PostId = post.PostId,
+                                    Content = post.Content,
+                                    DateMade = post.DateMade,
+                                    Title = post.Title,
+                                    UserId = user.UserIdNumber,
+                                    FirstName = user.FirstName,
+                                    LastName = user.LastName,
+                                    PostLikeId = like.PostLikeId,
+                                    PostLikeStatus = like.PostLikeStatus,
+                                    PostLikeStatusString = like.PostLikeStatusString
                                 }).ToList();
 
-            return View(joinedModels);    
-
-            //return View(posts);
+            foreach (var entity in joinedModels)
+            {
+                Console.WriteLine("PostId:  " + entity.PostId.ToString());
+            }
+            return View(joinedModels);
         }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        [IgnoreAntiforgeryToken]
+        public async Task<IActionResult> InsertPostLike([Bind("PostLikeId, PostId, UserId, PostLikeStatus")] PostLikeEntities postLikeEntities)
+        {
+            PostLikesBsn post = new PostLikesBsn();
+            return View(post.InsertPostLike(postLikeEntities));
+        }
+        public IActionResult InsertPostLike()
+        {
+            return View();
+        }
+
+
 
         // GET: PostEntities/Details/5
         public async Task<IActionResult> Details(int? id)
