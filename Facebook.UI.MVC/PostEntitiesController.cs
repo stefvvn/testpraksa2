@@ -35,22 +35,9 @@ namespace Facebook.UI.MVC
             PostLikesBsn postlikesbsn = new PostLikesBsn();
             List<PostLikeEntities> postlikes = postlikesbsn.GetPostLikes();
 
-            int loggedInUser = Convert.ToInt32(HttpContext.Request.Cookies["userID"]);
+            //int loggedInUser = Convert.ToInt32(HttpContext.Request.Cookies["userID"]);
 
-            //var joinedModels = (from post in posts
-            //                    join user in users
-            //                    on post.UserId equals user.UserIdNumber
-            //                    orderby post.PostId descending
-            //                    select new FeedModel()
-            //                    {
-            //                        PostId = post.PostId,
-            //                        Content = post.Content,
-            //                        DateMade = post.DateMade,
-            //                        Title = post.Title,
-            //                        UserId = user.UserIdNumber,
-            //                        FirstName = user.FirstName,
-            //                        LastName = user.LastName
-            //                    }).ToList();
+
 
             var joinedModels = (from post in posts
                                 join user in users on post.UserId equals user.UserIdNumber

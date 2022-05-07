@@ -86,25 +86,25 @@ postBtn.onclick = function () {
 //var postContainer = document.getElementsByClassName("post-container")[0];
 //var likeBtn = document.getElementsByClassName("like-button")[0];
 
-function likeClick() {
+function likeClick(ButtonNumber) {
     var userId = getCookie("userID");
-    var postId = document.getElementById("PostId1").value;
-    var postLikeStatus = document.getElementById("PostLikeStatus1").value;
+    var postId = ButtonNumber.getAttribute("PostId");
+    //var postLikeStatus = document.getElementById("PostLikeStatus1").value;
 
     alert("UserId: " + userId);
     alert("PostId: " + postId);
-    alert("PostLikeStatus: " + postLikeStatus);
+    //alert("PostLikeStatus: " + postLikeStatus);
 
-        $.ajax({
-            type: "POST",
-            url: "PostLikeEntities/Create",
-            data: { 'UserId': userId, 'PostId': postId, 'PostLikeStatus': 1 },
-            success: function (response) {
-                alert("Liked Post: " + postId + "  UserID: " + userId);
-                location.reload()
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert(xhr);
-            }
-        });
+        //$.ajax({
+        //    type: "POST",
+        //    url: "PostLikeEntities/Create",
+        //    data: { 'UserId': userId, 'PostId': postId, 'PostLikeStatus': 1 },
+        //    success: function (response) {
+        //        alert("Liked Post: " + postId + "  UserID: " + userId);
+        //        location.reload()
+        //    },
+        //    error: function (xhr, ajaxOptions, thrownError) {
+        //        alert(xhr);
+        //    }
+        //});
     }
