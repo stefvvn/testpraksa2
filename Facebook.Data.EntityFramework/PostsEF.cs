@@ -19,12 +19,6 @@ namespace Facebook.Data.EntityFramework
             return (List<PostEntities>)Db.Post.Where(u => u.UserId == Id);
         }
 
-        public List<PostEntities> GetPostList()
-        {
-            ApplicationDbContext Db = new ApplicationDbContext();
-            return Db.Post.ToList();
-        }
-
         public PostEntities UpdatePost(PostEntities post)
         {
             ApplicationDbContext Db = new ApplicationDbContext();
@@ -42,6 +36,22 @@ namespace Facebook.Data.EntityFramework
         }
 
         public PostEntities DeletePostByID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<PostEntities> GetPostList()
+        {
+            ApplicationDbContext Db = new ApplicationDbContext();
+            return Db.Post.ToList();
+        }
+
+        public List<PostEntities> GetJoinedPostList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public PostEntities GetPostByID(int id)
         {
             throw new NotImplementedException();
         }

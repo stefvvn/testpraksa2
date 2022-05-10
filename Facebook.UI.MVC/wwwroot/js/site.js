@@ -68,12 +68,9 @@ postBtn.onclick = function () {
     var content = document.getElementById("ContentBox").value;
     $.ajax({
         type: "POST",
-        //url: "PostEntities/CreatePost", /*ERROR 500 = Nema CreatePost View*/
         url: "PostEntities/Create",
         data: { 'UserID': userId, 'Title': title, 'Content': content },
         success: function (response) {
-            //document.getElementById("TitleBox").value = '';
-            //document.getElementById("ContentBox").value = '';
             alert("Made post:  " + title + "  " + content);
             location.reload()
         },
@@ -83,17 +80,16 @@ postBtn.onclick = function () {
     });
 }
 
-//var postContainer = document.getElementsByClassName("post-container")[0];
-//var likeBtn = document.getElementsByClassName("like-button")[0];
 
 function likeClick(ButtonNumber) {
     var userId = getCookie("userID");
     var postId = ButtonNumber.getAttribute("PostId");
-    //var postLikeStatus = document.getElementById("PostLikeStatus1").value;
+    var postLikeStatus = ButtonNumber.getAttribute("PostLikeStatus");
+    var postLikeId = ButtonNumber.getAttribute("PostLikeId");
 
-    alert("UserId: " + userId);
     alert("PostId: " + postId);
-    //alert("PostLikeStatus: " + postLikeStatus);
+    alert("PostLikeStatus: " + postLikeStatus);
+    alert("PostLikeId: " + postLikeId);
 
         //$.ajax({
         //    type: "POST",
@@ -107,4 +103,28 @@ function likeClick(ButtonNumber) {
         //        alert(xhr);
         //    }
         //});
-    }
+}
+
+function commentClick(commentBtn) {
+    var userId = getCookie("userID");
+    var postId = commentBtn.getAttribute("PostId");
+    var postLikeStatus = commentBtn.getAttribute("PostLikeStatus");
+    var postLikeId = commentBtn.getAttribute("PostLikeId");
+
+    alert("PostId: " + postId);
+    alert("PostLikeStatus: " + postLikeStatus);
+    alert("PostLikeId: " + postLikeId);
+
+    //$.ajax({
+    //    type: "POST",
+    //    url: "PostLikeEntities/Create",
+    //    data: { 'UserId': userId, 'PostId': postId, 'PostLikeStatus': 1 },
+    //    success: function (response) {
+    //        alert("Liked Post: " + postId + "  UserID: " + userId);
+    //        location.reload()
+    //    },
+    //    error: function (xhr, ajaxOptions, thrownError) {
+    //        alert(xhr);
+    //    }
+    //});
+}

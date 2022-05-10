@@ -1,6 +1,8 @@
-﻿using Facebook.Data.SQL;
+﻿using Facebook.Data.EntityFramework;
+using Facebook.Data.SQL;
 using Facebook.Entities;
 using Facebook.Interfaces;
+
 
 namespace Facebook.Business
 {
@@ -9,32 +11,32 @@ namespace Facebook.Business
     {
         public CommentEntities InsertComment(CommentEntities comment)
         {
-            CommentData data = new CommentData();
+            IComments data = new CommentsEF();
             return data.InsertComment(comment);
         }
         public CommentEntities GetCommentByID(int Id)
         {
-            CommentData data = new CommentData();
+            IComments data = new CommentsEF();
             return data.GetCommentByID(Id);
         }
         public CommentEntities UpdateComment(CommentEntities comment)
         {
-            CommentData data = new CommentData();
+            IComments data = new CommentsEF();
             return data.UpdateComment(comment);
         }
         public CommentEntities DeleteCommentByID(int Id)
         {
-            CommentData data = new CommentData();
+            IComments data = new CommentsEF();
             return data.DeleteCommentByID(Id);
         }
         public List<CommentEntities> GetCommentList()
         {
-            CommentData data = new CommentData();
+            IComments data = new CommentsEF();
             return data.GetCommentList();
         }
         public List<CommentEntities> GetCommentsByPost(int postId)
         {
-            CommentData data = new CommentData();
+            IComments data = new CommentsEF();
             return data.GetCommentsByPost(postId);
         }
     }

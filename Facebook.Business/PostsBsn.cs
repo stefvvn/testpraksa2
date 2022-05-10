@@ -19,17 +19,17 @@ namespace Facebook.Business
         }
         public PostEntities GetPostByID(int Id)
         {
-            PostData data = new PostData();
+            IPosts data = new PostsEF();
             return data.GetPostByID(Id);
         }
         public PostEntities UpdatePost(PostEntities post)
         {
-            PostData data = new PostData();
+            IPosts data = new PostsEF();
             return data.UpdatePost(post);
         }
         public PostEntities DeletePostByID(int Id)
         {
-            PostData data = new PostData();
+            IPosts data = new PostsEF();
             return data.DeletePostByID(Id);
         }
         public List<PostEntities> GetPostList()
@@ -39,13 +39,13 @@ namespace Facebook.Business
         }
         public List<PostEntities> GetPostsByUser(int userId)
         {
-            PostData data = new PostData();
+            IPosts data = new PostsEF();
             return data.GetPostsByUser(userId);
         }
 
         public List<PostEntities> GetJoinedPostList()
         {
-            PostData data = new PostData();
+            IPosts data = new PostsEF();
             return data.GetJoinedPostList();
         }
     }

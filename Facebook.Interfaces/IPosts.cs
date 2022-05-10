@@ -14,5 +14,7 @@ namespace Facebook.Interfaces
         PostEntities UpdatePost(PostEntities post);
         PostEntities DeletePostByID(int id);
         List<PostEntities> GetPostsByUser(int userId);
+        List<PostEntities> GetJoinedPostList();
+        PostEntities GetPostByID(int id);
     }
 }

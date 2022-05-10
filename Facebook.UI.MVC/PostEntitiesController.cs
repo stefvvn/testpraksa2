@@ -26,40 +26,63 @@ namespace Facebook.UI.MVC
         // GET: PostEntities
         public async Task<IActionResult> Index() 
         {
+            int loggedInUser = Convert.ToInt32(HttpContext.Request.Cookies["userID"]);
+
             PostBsn postbsn = new PostBsn();
             List<PostEntities> posts = postbsn.GetPostList();
 
             AccountUserInfoBsn userbsn = new AccountUserInfoBsn();
             List<AccountUserInfoEntities> users = userbsn.GetUserList();
 
-            PostLikesBsn postlikesbsn = new PostLikesBsn();
-            List<PostLikeEntities> postlikes = postlikesbsn.GetPostLikes();
+            PostLikesBsn likesbsn = new PostLikesBsn();
+            List<PostLikeEntities> likes = likesbsn.GetPostLikesByUserId(loggedInUser);
 
-            //int loggedInUser = Convert.ToInt32(HttpContext.Request.Cookies["userID"]);
+            //PostLikesBsn postlikesbsn = new PostLikesBsn();
+            //List<PostLikeEntities> postlikes = postlikesbsn.GetPostLikes();
+
+            var joinedModels = (
+                from post in posts
+                let user = users.Where(x => x.UserIdNumber == post.UserId).FirstOrDefault()
+                let like = likes.Where(y => y.UserId == loggedInUser).FirstOrDefault()
+                where user != null
+                orderby post.PostId descending
+                select new FeedModel()
+                {
+                    PostId = post.PostId,
+                    Content = post.Content,
+                    DateMade = post.DateMade,
+                    Title = post.Title,
+                    UserId = user.UserIdNumber,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    PostLikeId = like.PostLikeId,
+                    PostLikeStatus = like.PostLikeStatus
+                }).ToList();
 
 
-
-            var joinedModels = (from post in posts
-                                join user in users on post.UserId equals user.UserIdNumber
-                                join like in postlikes on post.PostId equals like.PostId
-                                orderby post.PostId descending
-                                select new FeedModel()
-                                {
-                                    PostId = post.PostId,
-                                    Content = post.Content,
-                                    DateMade = post.DateMade,
-                                    Title = post.Title,
-                                    UserId = user.UserIdNumber,
-                                    FirstName = user.FirstName,
-                                    LastName = user.LastName,
-                                    PostLikeId = like.PostLikeId,
-                                    PostLikeStatus = like.PostLikeStatus,
-                                    PostLikeStatusString = like.PostLikeStatusString
-                                }).ToList();
+            //var joinedModels = (from post in posts
+            //                    join user in users on post.UserId equals user.UserIdNumber
+            //                    join like in likes on loggedInUser equals like.UserId where post.UserId == like.UserId
+            //                    orderby post.PostId descending
+            //                    select new FeedModel()
+            //                    {
+            //                        PostId = post.PostId,
+            //                        Content = post.Content,
+            //                        DateMade = post.DateMade,
+            //                        Title = post.Title,
+            //                        UserId = user.UserIdNumber,
+            //                        FirstName = user.FirstName,
+            //                        LastName = user.LastName,
+            //                        PostLikeId = like.PostLikeId,
+            //                        PostLikeStatus = like.PostLikeStatus
+            //                    }).ToList();
 
             foreach (var entity in joinedModels)
             {
                 Console.WriteLine("PostId:  " + entity.PostId.ToString());
+                Console.WriteLine("PostLikeId:  " + entity.PostLikeId.ToString());
+                Console.WriteLine("PostLikeStatus:  " + entity.PostLikeStatus.ToString());
+                Console.WriteLine();
             }
             return View(joinedModels);
         }

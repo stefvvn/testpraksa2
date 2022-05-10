@@ -25,5 +25,8 @@ namespace Facebook.Entities
                 return "Not Liked";
             }
         }
+
+        [ForeignKey("PostId")]
+        public virtual PostEntities Post { get; set; }
     }
 }

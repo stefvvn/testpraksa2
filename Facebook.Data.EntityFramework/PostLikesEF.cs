@@ -46,5 +46,22 @@ namespace Facebook.Data.EntityFramework
             Db.PostLike.Where(u => u.PostLikeId == postLikeId);
             return DeletePostLikeById(postLikeId);
         }
+
+        //public PostLikeEntities ToggleLike(int postId, int userId)
+        //{
+        //    ApplicationDbContext Db = new ApplicationDbContext();
+        //    var query = Db.PostLike
+        //        .Where(p => p.PostLikeId == postLike.PostId)
+        //        .Where(u => u.UserId == postLike.UserId)
+
+
+
+        //    return ("xd");
+        //}
+        public List<PostLikeEntities> GetPostLikesByUserId(int postLikeUserId)
+        {
+            ApplicationDbContext Db = new ApplicationDbContext();
+            return Db.PostLike.Where(u => u.UserId == postLikeUserId).ToList();
+        }
     }
 }

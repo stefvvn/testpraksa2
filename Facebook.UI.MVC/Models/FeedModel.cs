@@ -5,6 +5,7 @@ namespace Facebook.UI.MVC.Models
 {
     public class FeedModel
     {
+
         public int PostId { get; set; }
         public int UserId { get; set; }
         public string Content { get; set; }
@@ -14,6 +15,5 @@ namespace Facebook.UI.MVC.Models
         public string LastName { get; set; }
         public int PostLikeId { get; set; }
         public byte PostLikeStatus { get; set; }
-        public string PostLikeStatusString { get; set; }
     }
 }

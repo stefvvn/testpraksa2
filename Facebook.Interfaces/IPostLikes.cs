@@ -14,5 +14,7 @@ namespace Facebook.Interfaces
         PostLikeEntities InsertPostLike(PostLikeEntities postLike);
         PostLikeEntities UpdatePostLike(PostLikeEntities postLike);
         PostLikeEntities DeletePostLikeById(int postLikeId);
+        List<PostLikeEntities> GetPostLikesByUserId(int postLikeUserId);
+        //PostLikeEntities ToggleLike(int postId, int userId);
     }
 }

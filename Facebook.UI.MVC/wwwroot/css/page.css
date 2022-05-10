@@ -463,12 +463,21 @@ nav {
 }
 
 .activity-button {
-    /*border: 1px solid #9a9a9a;*/
     border: transparent;
     border-radius: 4px;
     cursor: pointer;
     color: var(--text-color);
     background: transparent;
+}
+
+.post-button {
+    border: transparent;
+    padding: 5px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    background: #1876f2;
 }
 
 .like-button {
@@ -571,3 +580,37 @@ nav {
         padding-left: 23px;
         background: #0a0a0a;
     }
+
+.comments {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.comments a {
+    color: var(--text-color);
+}
+
+.comments p {
+    color: var(--text-color);
+}
+
+.comment-input-container {
+    
+}
+
+    .comment-input-container textarea {
+        width: 90%;
+        border: 0;
+        outline: 0;
+        border-bottom: 1px solid #ccc;
+        background: transparent;
+        resize: none;
+    }
+.write-comment-container {
+    width:90%;
+    background: var(--bg-color);
+    border-radius: 3px;
+    padding: 5px;
+    color: #626262;
+}
