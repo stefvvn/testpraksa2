@@ -18,14 +18,14 @@ namespace Facebook.Entities
         }
         [Key]
         public int PostId { get; set; }
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public string Content { get; set; }
         [Column(TypeName = "DateTime2")]
         public DateTime DateMade { get; set; }
         public string Title { get; set; }
         
         [ForeignKey("UserId")]
-        public virtual AccountUserInfoEntities User { get; set; }
-        public virtual CommentEntities Comment { get; set; }
+        public virtual AccountUserInfoEntities? User { get; set; }
+        public virtual List<PostLikeEntities>? PostLikes { get; set; }
     }
 }

@@ -15,6 +15,8 @@ namespace Facebook.Entities
     {
         public AccountUserInfoEntities()
         {
+            Posts = new HashSet<PostEntities>();
+            PostLikes = new HashSet<PostLikeEntities>();
             DateMade = DateTime.Now;
         }
         [Key]
@@ -40,5 +42,8 @@ namespace Facebook.Entities
                 return "Musko";
             }
         }
+
+        public virtual ICollection<PostEntities> Posts { get; set; }
+        public virtual ICollection<PostLikeEntities> PostLikes { get; set; }
     }
 }

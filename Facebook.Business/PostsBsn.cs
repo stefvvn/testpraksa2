@@ -43,10 +43,10 @@ namespace Facebook.Business
             return data.GetPostsByUser(userId);
         }
 
-        public List<PostEntities> GetJoinedPostList()
+        public List<PostEntities> GetJoinedPostList(int loggedInUser)
         {
             IPosts data = new PostsEF();
-            return data.GetJoinedPostList();
+            return data.GetJoinedPostList(loggedInUser);
         }
     }
 }

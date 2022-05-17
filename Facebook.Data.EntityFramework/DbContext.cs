@@ -55,6 +55,8 @@ namespace Facebook.Data.EntityFramework
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<PostEntities>().HasOne(e => e.User);
+            builder.Entity<PostEntities>().HasMany(e => e.PostLikes);
+            builder.Entity<AccountUserInfoEntities>().HasMany(e => e.Posts);
             base.OnModelCreating(builder);
         }
 

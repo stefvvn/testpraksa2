@@ -54,14 +54,6 @@ namespace Facebook.UI.MVC
         {
             AccountUserInfoBsn user = new AccountUserInfoBsn();
             return View(user.InsertUser(accountUserInfoEntities));
-
-            //if (ModelState.IsValid)
-            //{
-            //    _context.Add(accountUserInfoEntities);
-            //    await _context.SaveChangesAsync();
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //return View(accountUserInfoEntities);
         }
 
         // GET: AccountUserInfoEntities/Edit/5
@@ -88,28 +80,6 @@ namespace Facebook.UI.MVC
             }
             AccountUserInfoBsn user = new AccountUserInfoBsn();
             return View(user.UpdateUserAccountInfo(accountUserInfoEntities));
-
-            //if (ModelState.IsValid)
-            //{
-            //    try
-            //    {
-            //        _context.Update(accountUserInfoEntities);
-            //        await _context.SaveChangesAsync();
-            //    }
-            //    catch (DbUpdateConcurrencyException)
-            //    {
-            //        if (!AccountUserInfoEntitiesExists(accountUserInfoEntities.UserIdNumber))
-            //        {
-            //            return NotFound();
-            //        }
-            //        else
-            //        {
-            //            throw;
-            //        }
-            //    }
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //return View(accountUserInfoEntities);
         }
 
         // GET: AccountUserInfoEntities/Delete/5
@@ -121,14 +91,6 @@ namespace Facebook.UI.MVC
             }
             AccountUserInfoBsn user = new AccountUserInfoBsn();
             return View(user.GetUserByID(id.Value));
-
-            //var accountUserInfoEntities = await _context.AccountUserInfoEntities
-            //    .FirstOrDefaultAsync(m => m.UserIdNumber == id);
-            //if (accountUserInfoEntities == null)
-            //{
-            //    return NotFound();
-            //}
-            //return View(accountUserInfoEntities);
         }
 
         // POST: AccountUserInfoEntities/Delete/5
@@ -139,11 +101,6 @@ namespace Facebook.UI.MVC
             AccountUserInfoBsn user = new AccountUserInfoBsn();
             View(user.DeleteUserByID(id.Value));
             return RedirectToAction(nameof(Index));
-
-            //var accountUserInfoEntities = await _context.AccountUserInfoEntities.FindAsync(id);
-            //_context.AccountUserInfoEntities.Remove(accountUserInfoEntities);
-            //await _context.SaveChangesAsync();
-            //return RedirectToAction(nameof(Index));
         }
 
         private bool AccountUserInfoEntitiesExists(int id)

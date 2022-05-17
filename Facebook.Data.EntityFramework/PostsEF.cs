@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using Facebook.Data.SQL;
 using Facebook.Entities;
 using Facebook.Interfaces;
 using System.Linq;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace Facebook.Data.EntityFramework
 {
+
     public class PostsEF : SqlBaseData, IPosts
     {
         public List<PostEntities> GetPostsByUser(int Id)
@@ -46,9 +49,16 @@ namespace Facebook.Data.EntityFramework
             return Db.Post.ToList();
         }
 
-        public List<PostEntities> GetJoinedPostList()
+        public List<PostEntities> GetJoinedPostList(int loggedInUser)
         {
-            throw new NotImplementedException();
+            ApplicationDbContext db = new ApplicationDbContext();
+            var posts = db.Post
+                    .Include(u => u.User)
+                    .Include(l => l.PostLikes.Where(x => x.UserId == loggedInUser))
+                    .OrderByDescending(u => u.PostId)
+                    .ToList();
+
+            return posts;
         }
 
         public PostEntities GetPostByID(int id)

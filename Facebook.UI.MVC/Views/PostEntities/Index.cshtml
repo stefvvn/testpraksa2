@@ -1,5 +1,5 @@
-﻿@*@model IEnumerable<Facebook.Entities.PostEntities>*@
-@model IEnumerable<FeedModel>
+﻿@model IEnumerable<Facebook.Entities.PostEntities>
+@*@model IEnumerable<FeedModel>*@
 @{
     ViewData["Title"] = "Index";
 }
@@ -174,7 +174,7 @@
                         <div class="user-profile">
                             <img src="~/images/profile-pic.png">
                             <div>
-                                <p><a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@item.UserId">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</a></p>
+                                <p><a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@item.UserId">@Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName)</a></p>
                                 <span><a asp-controller="PostEntities" asp-action="Details" asp-route-id="@item.PostId">@Html.DisplayFor(modelItem => item.DateMade)</a></span>
                             </div>
                         </div>
@@ -186,7 +186,7 @@
 
                     <div class="post-row">
                         <div class="activity-icons">
-                            <button type="button" class="like-button" onclick="likeClick(this)" PostId="@item.PostId" PostLikeStatus="@item.PostLikeStatus" PostLikeId="@item.PostLikeId"> <div><img src="~/images/like-blue.png"> 120</div> </button>
+                            <button type="button" class="like-button" onclick="likeClick(this)" PostId="@item.PostId" @*PostLikeStatus="@item.PostLikes.PostLikeStatus" PostLikeId="@item.PostLikes.PostLikeId"*@> <div><img src="~/images/like-blue.png">@item.PostLikes.Count</div> </button>
                             <div><img src="~/images/comments.png"> 45</div>
                             <div><img src="~/images/share.png"> 20</div>
                         </div>
@@ -194,22 +194,18 @@
                             <img src="~/images/profile-pic.png"><i class="fa-solid fa-angle-down"></i>
                         </div>
                     </div>
-
-                    <div class="comments"> 
-                        <div class="write-comment-container">
-                    
-
-                         <div class="comment-input-container">
-                        <textarea rows="1" placeholder="Comment text here" name="CommentContent"></textarea>
-                            <input type="button" value="Comment" class="like-button">
-                        </div>
-
+                        <div class="comments"> 
+                            <div class="write-comment-container">
+                                <div class="comment-input-container">
+                                <textarea rows="1" placeholder="Comment text here" name="CommentContent"></textarea>
+                                <input type="button" value="Comment" class="comment-button" onclick="commentClick(this)" PostId="@item.PostId">
+                                </div>        
                             </div>
                         </div>
-                  </div>
+                </div>
                           }
                <div>
-                    <button type="button" class="load-more-button"> Load More</button>
+                    <button type="button" class="load-more-button">Load More</button>
                </div>
                </div>
             <!----------right-sidebar----------->
