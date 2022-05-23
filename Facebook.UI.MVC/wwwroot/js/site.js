@@ -60,18 +60,23 @@ var FullName = getCookie("firstName") + " " + getCookie("lastName");
 document.getElementById('SettingsSessionName').textContent = FullName;
 document.getElementById('FeedSessionName').textContent = FullName;
 
+
 var postBtn = document.getElementById("PostBtn");
 
 postBtn.onclick = function () {
     var userId = getCookie("userID");
     var title = document.getElementById("TitleBox").value;
     var content = document.getElementById("ContentBox").value;
+
+    var file = document.getElementById("upload");
+    var filename = file.files[0].name;
+
     $.ajax({
         type: "POST",
         url: "PostEntities/Create",
-        data: { 'UserID': userId, 'Title': title, 'Content': content },
+        data: { 'UserID': userId, 'Title': title, 'Content': content, 'ImgPath': filename },
         success: function (response) {
-            alert("Made post:  " + title + "  " + content);
+            alert("Made post:  " + title + "  " + content + "  " + filename);
             location.reload()
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -86,9 +91,9 @@ function likeClick(likeBtn) {
     var postLikeStatus = likeBtn.getAttribute("PostLikeStatus");
     var postLikeId = likeBtn.getAttribute("PostLikeId");
 
-    alert("PostId: " + postId);
-    alert("PostLikeStatus: " + postLikeStatus);
-    alert("PostLikeId: " + postLikeId);
+    //alert("PostId: " + postId);
+    //alert("PostLikeStatus: " + postLikeStatus);
+    //alert("PostLikeId: " + postLikeId);
 
         $.ajax({
             type: "POST",

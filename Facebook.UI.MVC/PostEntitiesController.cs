@@ -13,12 +13,12 @@ using Facebook.Data.EntityFramework;
 using Microsoft.AspNetCore.Http;
 using Facebook.UI.MVC.Models;
 
+
 namespace Facebook.UI.MVC
 {
     public class PostEntitiesController : Controller
     {
         private readonly FacebookUIMVCContext _context;
-
         public PostEntitiesController(FacebookUIMVCContext context)
         {
             _context = context;
@@ -31,13 +31,12 @@ namespace Facebook.UI.MVC
             PostBsn postbsn = new PostBsn();
             List<PostEntities> joinedModels = postbsn.GetJoinedPostList(loggedInUser);
 
-
             foreach (var entity in joinedModels)
             {
                 Console.WriteLine("");
                 Console.WriteLine("Name: " + entity.User.FirstName.ToString() + " " + entity.User.LastName.ToString());
                 Console.WriteLine("PostId: " + entity.PostId.ToString());
-                Console.WriteLine("PostLikeId: " + entity.PostLikes.ToString());
+                Console.WriteLine("Likes:  " + entity.PostLikes.Count());
             }
 
             return View(joinedModels);
@@ -81,11 +80,33 @@ namespace Facebook.UI.MVC
         [HttpPost]
         //[ValidateAntiForgeryToken]
         [IgnoreAntiforgeryToken]
-        public async Task<IActionResult> Create([Bind("PostId,UserId,Content,DateMade,Title")] PostEntities postEntities)
+        public async Task<IActionResult> Create([Bind("PostId,UserId,Content,DateMade,Title,ImgPath")] PostEntities postEntities)
         {
             PostBsn post = new PostBsn();
             return View(post.InsertPost(postEntities));
         }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        [IgnoreAntiforgeryToken]
+        public IActionResult Upload(IFormFile file)
+        {
+                var fileName = Path.GetFileName(file.FileName);
+                var uniqueFileName = Convert.ToString(Guid.NewGuid());
+                var fileExtension = Path.GetExtension(fileName);
+                //var newFileName = String.Concat(uniqueFileName, fileExtension);
+                var newFileName = String.Concat(fileName);
+
+                var filepath = (Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "img")) + $@"\{newFileName}";
+                using (FileStream fs = System.IO.File.Create(filepath))
+                {
+                    file.CopyTo(fs);
+                    fs.Flush();
+                }
+                
+                return View();
+        }
+
 
         [HttpPost]
         //[ValidateAntiForgeryToken]

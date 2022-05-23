@@ -13,10 +13,10 @@ namespace Facebook.Entities
     {
         [Key]
         public int PostLikeId { get; set; }
-        public int? PostId { get; set; }
-        public int? UserId { get; set; }
-        public byte? PostLikeStatus { get; set; }
-        public string? PostLikeStatusString
+        public int PostId { get; set; }
+        public int UserId { get; set; }
+        public byte PostLikeStatus { get; set; }
+        public string PostLikeStatusString
         {
             get
             {

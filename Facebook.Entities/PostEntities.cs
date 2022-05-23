@@ -23,9 +23,14 @@ namespace Facebook.Entities
         [Column(TypeName = "DateTime2")]
         public DateTime DateMade { get; set; }
         public string Title { get; set; }
-        
+        public string? ImgPath { get; set; }
+
         [ForeignKey("UserId")]
-        public virtual AccountUserInfoEntities? User { get; set; }
+        public virtual AccountUserInfoEntities User { get; set; }
         public virtual List<PostLikeEntities>? PostLikes { get; set; }
+        public virtual List<CommentEntities>? Comments { get; set; }
+        public virtual List<ImageEntities>? Images { get; set; }
+
+
     }
 }

@@ -34,11 +34,6 @@ namespace Facebook.Business
             IPostLikes data = new PostLikesEF();
             return data.DeletePostLikeById(postLikeId);
         }
-        //public PostLikeEntities ToggleLike(int postId, int userId)
-        //{
-        //    IPostLikes data = new PostLikesEF();
-        //    return data.ToggleLike(postId, userId);
-        //}
         public List<PostLikeEntities> GetPostLikesByUserId(int postLikeUserId)
         {
             IPostLikes data = new PostLikesEF();

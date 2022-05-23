@@ -51,18 +51,19 @@ namespace Facebook.Data.EntityFramework
         public virtual DbSet<PostEntities> Post { get; set; }
         public virtual DbSet<PostLikeEntities> PostLike { get; set; }
         public virtual DbSet<CommentEntities> Comment { get; set; }
+        public virtual DbSet<ImageEntities> Image { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<PostEntities>().HasOne(e => e.User);
             builder.Entity<PostEntities>().HasMany(e => e.PostLikes);
+            builder.Entity<PostEntities>().HasMany(e => e.Comments);
             builder.Entity<AccountUserInfoEntities>().HasMany(e => e.Posts);
             base.OnModelCreating(builder);
         }
 
 
         public ApplicationDbContext()
-
         {
 
         }

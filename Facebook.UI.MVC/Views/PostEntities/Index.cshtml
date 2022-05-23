@@ -117,7 +117,6 @@
                 </div>
 
             </div>
-
             <!----------main-content----------->
             <div class="main-content">
 
@@ -157,12 +156,16 @@
                         <textarea rows="1" placeholder="Title" name="Title" id="TitleBox"></textarea>
                         <textarea rows="1" placeholder="What's on your mind?" name="PostContent" id="ContentBox"></textarea>
                         <div class="add-post-links">
-                            <a href="#"><img src="~/images/live-video.png"> Live Video</a>
-                            <a href="#"><img src="~/images/photo.png"> Photo Video</a>
-                            <a href="#"><img src="~/images/feeling.png"> Feeling/Activity</a>
-                            <input type="button" value="Post" class="post-button" id="PostBtn" name="PostBtn">
+                          @*<a href="#"><img src="~/images/live-video.png"> Live Video</a>*@
+                          @*<a href="#"><img src="~/images/feeling.png"> Feeling/Activity</a>*@
+                          @*<a href="#"><img src="~/images/photo.png">Photo</a>*@
+                            <a href="#"><img src="~/images/photo.png"></a>
+                         <form enctype="multipart/form-data" method="post" asp-controller="PostEntities" asp-action="Upload">
+                             <input type="file" id="upload" name="file" />
+                            <input type="submit" value="Post" class="post-button" id="PostBtn" name="PostBtn">
+                        </form>
+                            
                         </div>
-
                     </div>
                 </div>
 
@@ -172,7 +175,9 @@
                 <div class="post-container">
                     <div class="post-row">
                         <div class="user-profile">
-                            <img src="~/images/profile-pic.png">
+                            @*<img src="~/images/profile-pic.png">*@
+                            <img src="~/images/img/@item.User.ImgPath">
+
                             <div>
                                 <p><a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@item.UserId">@Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName)</a></p>
                                 <span><a asp-controller="PostEntities" asp-action="Details" asp-route-id="@item.PostId">@Html.DisplayFor(modelItem => item.DateMade)</a></span>
@@ -182,11 +187,14 @@
                     </div>
                     <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
                     <p class="post-text">@Html.DisplayFor(modelItem => item.Content)</p>
-                    <img src="~/images/feed-image-1.png"class="post-img">
+                    @*<img src="~/images/feed-image-1.png" class="post-img">*@
+                     <img src="~/images/img/@item.ImgPath" class="post-img">
+
 
                     <div class="post-row">
                         <div class="activity-icons">
-                            <button type="button" class="like-button" onclick="likeClick(this)" PostId="@item.PostId" @*PostLikeStatus="@item.PostLikes.PostLikeStatus" PostLikeId="@item.PostLikes.PostLikeId"*@> <div><img src="~/images/like-blue.png">@item.PostLikes.Count</div> </button>
+                           <button type="button" class="like-button" onclick="likeClick(this)" PostId="@item.PostId" > <div><img src="~/images/like-blue.png">@item.PostLikes.Count</div> </button>
+
                             <div><img src="~/images/comments.png"> 45</div>
                             <div><img src="~/images/share.png"> 20</div>
                         </div>
@@ -197,7 +205,7 @@
                         <div class="comments"> 
                             <div class="write-comment-container">
                                 <div class="comment-input-container">
-                                <textarea rows="1" placeholder="Comment text here" name="CommentContent"></textarea>
+                                <textarea rows="1" placeholder="Type a comment here" name="CommentContent"></textarea>
                                 <input type="button" value="Comment" class="comment-button" onclick="commentClick(this)" PostId="@item.PostId">
                                 </div>        
                             </div>
@@ -269,5 +277,7 @@
                     <p>Marina Marinkovic</p>
                 </div>
                </div>
+        </div>
+
     </body>
 </html>

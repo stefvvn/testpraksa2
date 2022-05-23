@@ -25,5 +25,10 @@ namespace Facebook.Entities
 
         [Column(TypeName = "DateTime2")]
         public DateTime DateMade { get; set; }
+
+        [ForeignKey("PostId")]
+        public virtual PostEntities Post { get; set; }
+        [ForeignKey("UserId")]
+        public virtual AccountUserInfoEntities User { get; set; }
     }
 }
