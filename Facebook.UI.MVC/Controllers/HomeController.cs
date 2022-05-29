@@ -60,10 +60,27 @@ namespace Facebook.UI.MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserIdNumber,UserName,FirstName,LastName,EmailAddress,City,Gender,DateOfBirth,ProfileDescription,DateMade")] AccountUserInfoEntities accountUserInfoEntities)
+        public async Task<IActionResult> Create([Bind("UserIdNumber,UserName,FirstName,LastName,EmailAddress,City,Gender,DateOfBirth,ProfileDescription,DateMade,ImgPath")] AccountUserInfoEntities accountUserInfoEntities, IFormFile file)
         {
+            AccountUserInfoEntities user = new AccountUserInfoEntities();
             AccountUserInfoBsn bsn = new AccountUserInfoBsn();
+
+            var fileName = Path.GetFileName(file.FileName);
+            var uniqueFileName = Convert.ToString(Guid.NewGuid());
+            var fileExtension = Path.GetExtension(fileName);
+            var newFileName = String.Concat(uniqueFileName, fileExtension);
+
+            var filepath = (Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "img")) + $@"\{newFileName}";
+            using (FileStream fs = System.IO.File.Create(filepath))
+            {
+                file.CopyTo(fs);
+                fs.Flush();
+            }
+
+            user.ImgPath = newFileName;
+
             bsn.InsertUser(accountUserInfoEntities);
+
 
             CookieOptions cookieOptions = new CookieOptions();
             HttpContext.Response.Cookies.Append("email", accountUserInfoEntities.EmailAddress, cookieOptions);

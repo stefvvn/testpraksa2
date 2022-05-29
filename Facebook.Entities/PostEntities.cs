@@ -18,19 +18,21 @@ namespace Facebook.Entities
         }
         [Key]
         public int PostId { get; set; }
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
         public string Content { get; set; }
         [Column(TypeName = "DateTime2")]
         public DateTime DateMade { get; set; }
         public string Title { get; set; }
         public string? ImgPath { get; set; }
 
+
+        [NotMapped]
+        public int LikeCount { get { return PostLikes.Count(); } }
+
+
         [ForeignKey("UserId")]
         public virtual AccountUserInfoEntities User { get; set; }
         public virtual List<PostLikeEntities>? PostLikes { get; set; }
         public virtual List<CommentEntities>? Comments { get; set; }
-        public virtual List<ImageEntities>? Images { get; set; }
-
-
     }
 }

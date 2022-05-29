@@ -20,13 +20,15 @@ namespace Facebook.Data.EntityFramework
         public List<PostEntities> GetJoinedPostList(int loggedInUser)
         {
             ApplicationDbContext db = new ApplicationDbContext();
+
             var posts = db.Post
                     .Include(u => u.User)
-                    .Include(a => a.PostLikes)
                     .Include(c => c.Comments)
-                    .Include(i => i.Images)
+                    //.Include(b => b.PostLikes.Where(x => x.UserId == loggedInUser))
+                    .Include(b => b.PostLikes)
                     .OrderByDescending(u => u.PostId)
                     .ToList();
+
             return posts;
         }
 

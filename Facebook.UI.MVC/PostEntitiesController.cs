@@ -30,7 +30,6 @@ namespace Facebook.UI.MVC
             int loggedInUser = Convert.ToInt32(HttpContext.Request.Cookies["userID"]);
             PostBsn postbsn = new PostBsn();
             List<PostEntities> joinedModels = postbsn.GetJoinedPostList(loggedInUser);
-
             foreach (var entity in joinedModels)
             {
                 Console.WriteLine("");
@@ -50,6 +49,7 @@ namespace Facebook.UI.MVC
             PostLikesBsn post = new PostLikesBsn();
             return View(post.InsertPostLike(postLikeEntities));
         }
+
         public IActionResult InsertPostLike()
         {
             return View();
@@ -86,41 +86,94 @@ namespace Facebook.UI.MVC
             return View(post.InsertPost(postEntities));
         }
 
+        //[HttpPost]
+        ////[ValidateAntiForgeryToken]
+        //[IgnoreAntiforgeryToken]
+        //public IActionResult Upload(IFormFile file)
+        //{
+        //    var fileName = Path.GetFileName(file.FileName);
+        //    var uniqueFileName = Convert.ToString(Guid.NewGuid());
+        //    var fileExtension = Path.GetExtension(fileName);
+        //    //var newFileName = String.Concat(uniqueFileName, fileExtension);
+        //    var newFileName = String.Concat(fileName);
+
+        //    var filepath = (Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "img")) + $@"\{newFileName}";
+        //    using (FileStream fs = System.IO.File.Create(filepath))
+        //    {
+        //        file.CopyTo(fs);
+        //        fs.Flush();
+        //    }
+
+        //    return View();
+        //}
+
+
         [HttpPost]
         //[ValidateAntiForgeryToken]
         [IgnoreAntiforgeryToken]
-        public IActionResult Upload(IFormFile file)
+        public IActionResult CreateComment(int UserID, int PostID, string CommentContent, string ImgPath, IFormFile file)
         {
-                var fileName = Path.GetFileName(file.FileName);
-                var uniqueFileName = Convert.ToString(Guid.NewGuid());
-                var fileExtension = Path.GetExtension(fileName);
-                //var newFileName = String.Concat(uniqueFileName, fileExtension);
-                var newFileName = String.Concat(fileName);
+            CommentEntities comment = new CommentEntities();
+            CommentBsn commentBsn = new CommentBsn();
 
-                var filepath = (Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "img")) + $@"\{newFileName}";
-                using (FileStream fs = System.IO.File.Create(filepath))
-                {
-                    file.CopyTo(fs);
-                    fs.Flush();
-                }
-                
-                return View();
+            var fileName = Path.GetFileName(file.FileName);
+            var uniqueFileName = Convert.ToString(Guid.NewGuid());
+            var fileExtension = Path.GetExtension(fileName);
+            var newFileName = String.Concat(uniqueFileName, fileExtension);
+
+            comment.UserId = Convert.ToInt32(HttpContext.Request.Cookies["userID"]);
+            comment.PostId = 4;
+            comment.Content = CommentContent;
+            comment.ImgPath = newFileName;
+            commentBsn.InsertComment(comment);
+
+            ///////////     LAST ID
+
+            var filepath = (Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "img")) + $@"\{newFileName}";
+            using (FileStream fs = System.IO.File.Create(filepath))
+            {
+                file.CopyTo(fs);
+                fs.Flush();
+            }
+            return Redirect("https://localhost:7029/PostEntities");
         }
 
 
+
         [HttpPost]
         //[ValidateAntiForgeryToken]
         [IgnoreAntiforgeryToken]
-        public IActionResult CreatePost(int UserID, string Title, string Content)
+        public IActionResult CreatePost(int UserID, string Title, string PostContent, string ImgPath, IFormFile file)
         {
             PostEntities post = new PostEntities();
             PostBsn postbsn = new PostBsn();
 
-            post.UserId = UserID;
-            post.Title = Title;
-            post.Content = Content;
+            var fileName = Path.GetFileName(file.FileName);
+            var uniqueFileName = Convert.ToString(Guid.NewGuid());
+            var fileExtension = Path.GetExtension(fileName);
+            var newFileName = String.Concat(uniqueFileName, fileExtension);
 
-            return View(postbsn.InsertPost(post));
+            post.UserId = Convert.ToInt32(HttpContext.Request.Cookies["userID"]);
+            post.Title = Title;
+            post.Content = PostContent;
+            post.ImgPath = newFileName;
+            postbsn.InsertPost(post);
+
+            ///////////     LAST ID
+
+            var filepath = (Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "img")) + $@"\{newFileName}";
+            using (FileStream fs = System.IO.File.Create(filepath))
+            {
+                file.CopyTo(fs);
+                fs.Flush();
+            }
+
+
+
+
+
+
+            return Redirect("https://localhost:7029/PostEntities");
         }
 
         // GET: PostEntities/Edit/5

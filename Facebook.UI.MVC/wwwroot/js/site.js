@@ -63,27 +63,27 @@ document.getElementById('FeedSessionName').textContent = FullName;
 
 var postBtn = document.getElementById("PostBtn");
 
-postBtn.onclick = function () {
-    var userId = getCookie("userID");
-    var title = document.getElementById("TitleBox").value;
-    var content = document.getElementById("ContentBox").value;
+//postBtn.onclick = function () {
+//    var userId = getCookie("userID");
+//    var title = document.getElementById("TitleBox").value;
+//    var content = document.getElementById("ContentBox").value;
 
-    var file = document.getElementById("upload");
-    var filename = file.files[0].name;
+//    var file = document.getElementById("upload");
+//    var filename = file.files[0].name;
 
-    $.ajax({
-        type: "POST",
-        url: "PostEntities/Create",
-        data: { 'UserID': userId, 'Title': title, 'Content': content, 'ImgPath': filename },
-        success: function (response) {
-            alert("Made post:  " + title + "  " + content + "  " + filename);
-            location.reload()
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            alert(xhr);
-        }
-    });
-}
+//    $.ajax({
+//        type: "POST",
+//        url: "PostEntities/Create",
+//        data: { 'UserID': userId, 'Title': title, 'Content': content, 'ImgPath': filename },
+//        success: function (response) {
+//            alert("Made post:  " + title + "  " + content + "  " + filename);
+//            location.reload()
+//        },
+//        error: function (xhr, ajaxOptions, thrownError) {
+//            alert(xhr);
+//        }
+//    });
+//}
 
 function likeClick(likeBtn) {
     var userId = getCookie("userID");
@@ -109,21 +109,21 @@ function likeClick(likeBtn) {
         });
 }
 
-function commentClick(commentBtn) {
-    var userId = getCookie("userID");
-    var postId = commentBtn.getAttribute("PostId");
-    var content = $("textarea", $(commentBtn).parent()).val();
+//function commentClick(commentBtn) {
+//    var userId = getCookie("userID");
+//    var postId = commentBtn.getAttribute("PostId");
+//    var content = $("textarea", $(commentBtn).parent()).val();
 
-    $.ajax({
-        type: "POST",
-        url: "CommentEntities/Create",
-        data: { 'PostID': postId, 'UserID': userId, 'Content': content },
-        success: function (response) {
-            alert("Made comment:  " + content + "   on PostId:  " + postId);
-            location.reload();
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            alert(xhr);
-        }
-    });
-}
+//    $.ajax({
+//        type: "POST",
+//        url: "CommentEntities/Create",
+//        data: { 'PostID': postId, 'UserID': userId, 'Content': content },
+//        success: function (response) {
+//            alert("Made comment:  " + content + "   on PostId:  " + postId);
+//            location.reload();
+//        },
+//        error: function (xhr, ajaxOptions, thrownError) {
+//            alert(xhr);
+//        }
+//    });
+//}

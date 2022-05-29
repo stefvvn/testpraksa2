@@ -153,18 +153,20 @@
                     </div>
 
                     <div class="post-input-container">
+                        <form enctype="multipart/form-data" method="post" asp-controller="PostEntities" asp-action="CreatePost">
                         <textarea rows="1" placeholder="Title" name="Title" id="TitleBox"></textarea>
                         <textarea rows="1" placeholder="What's on your mind?" name="PostContent" id="ContentBox"></textarea>
                         <div class="add-post-links">
                           @*<a href="#"><img src="~/images/live-video.png"> Live Video</a>*@
                           @*<a href="#"><img src="~/images/feeling.png"> Feeling/Activity</a>*@
                           @*<a href="#"><img src="~/images/photo.png">Photo</a>*@
-                            <a href="#"><img src="~/images/photo.png"></a>
-                         <form enctype="multipart/form-data" method="post" asp-controller="PostEntities" asp-action="Upload">
-                             <input type="file" id="upload" name="file" />
-                            <input type="submit" value="Post" class="post-button" id="PostBtn" name="PostBtn">
-                        </form>
-                            
+                         
+                                  <label className="btn btn-info btn-lg post-upload-label">
+                                  <img src="~/images/upload.png" class="post-upload-button">
+                                  <input type="file" id="upload" name="file" style="display: none" />
+                                  </label>                            
+                                <input type="submit" value="Post" class="post-button" id="PostBtn" name="PostBtn">
+                                 </form>
                         </div>
                     </div>
                 </div>
@@ -202,14 +204,49 @@
                             <img src="~/images/profile-pic.png"><i class="fa-solid fa-angle-down"></i>
                         </div>
                     </div>
-                        <div class="comments"> 
-                            <div class="write-comment-container">
+                <div class="comment-container"> 
+                    @foreach (var comment in item.Comments)
+                    {
+
+                        <div class="comment-body">
+
+                            <div class="comment-user-profile">
+                                <img src="~/images/img/@Html.DisplayFor(modelItem => comment.User.ImgPath)" class="comment-user-profilepic">
+                                <p><a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@comment.UserId">@Html.DisplayFor(modelItem => comment.User.FirstName) @Html.DisplayFor(modelItem => comment.User.LastName)</a>
+                                <a asp-controller="CommentEntities" asp-action="Details" asp-route-id="@comment.CommentId">@Html.DisplayFor(modelItem => comment.DateMade)</a>
+                                </p>
+                            </div>
+                           <div class="comment-content"> 
+                            @Html.DisplayFor(modelItem => comment.Content)<br>
+                                </div>
+                        <button type="button" class="comment-like-button" onclick="likeCommentClick(this)" CommentId="@comment.CommentId" > <div><img src="~/images/like-blue.png"></div> </button>
+                        </div>
+
+
+
+                    }
+
+@*                    <div class="write-comment-container">
                                 <div class="comment-input-container">
                                 <textarea rows="1" placeholder="Type a comment here" name="CommentContent"></textarea>
                                 <input type="button" value="Comment" class="comment-button" onclick="commentClick(this)" PostId="@item.PostId">
-                                </div>        
-                            </div>
-                        </div>
+                                </div> *@
+
+                         <div class="write-comment-container">
+                             <form enctype="multipart/form-data" method="post" asp-controller="PostEntities" asp-action="CreateComment">
+                                <div class="comment-input-container">
+                                <textarea rows="1" placeholder="Write a comment" name="CommentContent"></textarea>
+
+                                <label className="btn btn-info btn-lg">
+                                  <img src="~/images/upload.png" class="comment-upload-button">
+                                  <input type="file" id="upload" name="file" style="display: none" />
+                                </label>
+                               
+                                <input type="submit" value="Comment" class="comment-button" name="CommentBtn">
+                             </div>      
+                             </form>
+                    </div>
+                </div>
                 </div>
                           }
                <div>
