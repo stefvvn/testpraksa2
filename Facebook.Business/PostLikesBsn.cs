@@ -12,6 +12,17 @@ namespace Facebook.Business
 {
     public class PostLikesBsn
     {
+        public PostLikeEntities ToggleInsertPostLike(PostLikeEntities postLike)
+        {
+            IPostLikes data = new PostLikesEF();
+            return data.ToggleInsertPostLike(postLike);
+        }
+        public PostLikeEntities ToggleDeletePostLike(int userId, int postId)
+        {
+            IPostLikes data = new PostLikesEF();
+            return data.ToggleDeletePostLikeById(userId, postId);
+        }
+
         public List<PostLikeEntities> GetPostLikes()
         {
             IPostLikes data = new PostLikesEF();

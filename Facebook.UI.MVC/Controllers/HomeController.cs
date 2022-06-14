@@ -35,6 +35,7 @@ namespace Facebook.UI.MVC.Controllers
             HttpContext.Response.Cookies.Append("firstName", user.FirstName.ToString(), cookieOptions);
             HttpContext.Response.Cookies.Append("lastName", user.LastName.ToString(), cookieOptions);
             HttpContext.Response.Cookies.Append("userName", user.UserName.ToString(), cookieOptions);
+            HttpContext.Response.Cookies.Append("imgPath", user.ImgPath.ToString(), cookieOptions);
             Response.Redirect("https://localhost:7029/PostEntities");
             return View("Index");
         }
@@ -81,13 +82,14 @@ namespace Facebook.UI.MVC.Controllers
 
             bsn.InsertUser(accountUserInfoEntities);
 
-
             CookieOptions cookieOptions = new CookieOptions();
             HttpContext.Response.Cookies.Append("email", accountUserInfoEntities.EmailAddress, cookieOptions);
             HttpContext.Response.Cookies.Append("userID", accountUserInfoEntities.UserIdNumber.ToString(), cookieOptions);
             HttpContext.Response.Cookies.Append("firstName", accountUserInfoEntities.FirstName.ToString(), cookieOptions);
             HttpContext.Response.Cookies.Append("lastName", accountUserInfoEntities.LastName.ToString(), cookieOptions);
             HttpContext.Response.Cookies.Append("userName", accountUserInfoEntities.UserName.ToString(), cookieOptions);
+            HttpContext.Response.Cookies.Append("imgPath", accountUserInfoEntities.ImgPath.ToString(), cookieOptions);
+
             Response.Redirect("https://localhost:7029/PostEntities");
             return View("Index");
         }

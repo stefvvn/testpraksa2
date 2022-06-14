@@ -21,7 +21,7 @@ namespace Facebook.Data.EntityFramework
         public List<PostLikeEntities> GetPostLikesByPostId(int postId)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            return (List<PostLikeEntities>)db.Post.Where(u => u.PostId == postId);
+            return (List<PostLikeEntities>)db.PostLike.Where(u => u.PostId == postId);
         }
 
         public PostLikeEntities InsertPostLike(PostLikeEntities postLike)
@@ -46,22 +46,24 @@ namespace Facebook.Data.EntityFramework
             Db.PostLike.Where(u => u.PostLikeId == postLikeId);
             return DeletePostLikeById(postLikeId);
         }
-
-        //public PostLikeEntities ToggleLike(int postId, int userId)
-        //{
-        //    ApplicationDbContext Db = new ApplicationDbContext();
-        //    var query = Db.PostLike
-        //        .Where(p => p.PostLikeId == postLike.PostId)
-        //        .Where(u => u.UserId == postLike.UserId)
-
-
-
-        //    return ("xd");
-        //}
         public List<PostLikeEntities> GetPostLikesByUserId(int postLikeUserId)
         {
             ApplicationDbContext Db = new ApplicationDbContext();
             return Db.PostLike.Where(u => u.UserId == postLikeUserId).ToList();
+        }
+
+        public PostLikeEntities ToggleInsertPostLike(PostLikeEntities postLike)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PostLikeEntities ToggleDeletePostLikeById(int userId, int postId)
+        {
+            ApplicationDbContext Db = new ApplicationDbContext();
+            PostLikeEntities postlike = Db.PostLike.Where(u => u.UserId == userId && u.PostId == postId).First();
+            Db.PostLike.Remove(postlike);
+            Db.SaveChanges();
+            return postlike;
         }
     }
 }

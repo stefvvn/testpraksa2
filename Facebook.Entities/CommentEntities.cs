@@ -31,5 +31,7 @@ namespace Facebook.Entities
         public virtual PostEntities Post { get; set; }
         [ForeignKey("UserId")]
         public virtual AccountUserInfoEntities User { get; set; }
+        public int? LikedByUser { get { return CommentLikes.Where(x => x.UserId == 64).Count(); } }
+        public virtual List<CommentLikeEntities>? CommentLikes{ get; set; }
     }
 }

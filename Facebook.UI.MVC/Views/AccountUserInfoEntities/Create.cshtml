@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="UserName" class="control-label"></label>
@@ -56,6 +56,13 @@
                 <label asp-for="DateMade" class="control-label"></label>
                 <input asp-for="DateMade" class="form-control" />
                 <span asp-validation-for="DateMade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+@*                <label asp-for="ImgPath" class="control-label"></label>
+                <input asp-for="ImgPath" class="form-control" type="file" name="file" id="upload"/>
+                <span asp-validation-for="ImgPath" class="text-danger"></span>*@
+                   <input type="file" id="upload" name="file" />
+
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -1,12 +1,27 @@
-﻿using Facebook.Data.SQL;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+using Facebook.Data.SQL;
 using Facebook.Entities;
 using Facebook.Interfaces;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace Facebook.Data.EntityFramework
 {
-    public class AccountUserInfoEF : SqlBaseData, IAccountUserInfo
+    public class AccountUserInfoEF : SqlBaseData, IAccountUserInfo, ISearch
     {
+
+        public List<AccountUserInfoEntities> SearchUsers(string query)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            return db.User.Where(u => u.FirstName.Contains(query) || u.LastName.Contains(query)).ToList();
+        }
+
         public AccountUserInfoEntities DeleteUserByID(int Id)
         {
             ApplicationDbContext Db = new ApplicationDbContext();
@@ -80,5 +95,20 @@ namespace Facebook.Data.EntityFramework
             return Db.User.First(u => u.EmailAddress == email);
         }
 
+        public AccountUserInfoEntities GetLastUser()
+        {
+            ApplicationDbContext Db = new ApplicationDbContext();
+            return Db.User.OrderByDescending(u => u.UserIdNumber).FirstOrDefault();
+        }
+
+        public List<PostEntities> SearchPosts(string query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CommentEntities> SearchComments(string query)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

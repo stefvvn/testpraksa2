@@ -15,5 +15,6 @@ namespace Facebook.Interfaces
         CommentEntities UpdateComment(CommentEntities comment);
         List<CommentEntities> GetCommentList();
         List<CommentEntities> GetCommentsByPost(int postId);
+        CommentEntities GetLastComment();
     }
 }

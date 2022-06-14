@@ -16,5 +16,6 @@ namespace Facebook.Interfaces
         List<PostEntities> GetPostsByUser(int userId);
         List<PostEntities> GetJoinedPostList(int loggedInUser);
         PostEntities GetPostByID(int id);
+        PostEntities GetLastPost();
     }
 }

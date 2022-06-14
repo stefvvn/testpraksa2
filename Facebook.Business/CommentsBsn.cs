@@ -39,5 +39,10 @@ namespace Facebook.Business
             IComments data = new CommentsEF();
             return data.GetCommentsByPost(postId);
         }
+        public CommentEntities GetLastComment()
+        {
+            IComments data = new CommentsEF();
+            return data.GetLastComment();
+        }
     }
 }

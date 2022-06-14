@@ -19,6 +19,7 @@ namespace Facebook.Interfaces
         List<AccountUserInfoEntities> GetUsersMultiParam(string username, string emailaddress, string firstname, string lastname, string city);
         AccountUserInfoEntities UpdateUserById(int Id);
         AccountUserInfoEntities GetUserByEmail(string email);
+        AccountUserInfoEntities GetLastUser();
     }
 }
 

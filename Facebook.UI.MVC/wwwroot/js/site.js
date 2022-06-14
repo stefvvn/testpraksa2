@@ -3,6 +3,43 @@
 
 // Write your JavaScript code.
 
+
+$(document).ready(function ($) {
+    $('.image-popup').magnificPopup({
+        type: 'image',
+        closeOnBgClick: true,
+        closeOnContentClick: true,
+        removalDelay: 150,
+        mainClass: 'mfp-fade',
+        zoom: {
+            enabled: true,
+            duration: 300,
+            easing: 'ease-in-out',
+            opener: function (openerElement) {
+                return openerElement.is('img') ? openerElement : openerElement.find('img');
+            }
+        },
+        image: {
+            titleSrc: function (item) {
+                return item.src.replace(/^.*[\\\/]/, '');
+            }
+        }
+    });
+});
+
+
+//var likeButtons = document.getElementsByClassName("LikeImage");
+//for (var i = 0; i < likeButtons.length; i++) {
+//    if ()
+//}
+
+
+//var commentLikeButtons = document.getElementsByClassName("LikeImage");
+//for (var i = 0; i < commentLikeButtons.length; i++) {
+//    commentLikeButtons[i].className += " blue-comment-like";
+//}
+
+
 var settingsmenu = document.querySelector(".settings-menu");
 var darkBtn = document.getElementById("dark-btn");
 
@@ -61,7 +98,14 @@ document.getElementById('SettingsSessionName').textContent = FullName;
 document.getElementById('FeedSessionName').textContent = FullName;
 
 
+var userImgPath = "/images/img/user/" + getCookie("userID") + "/" + getCookie("imgPath");
+document.getElementById("userImage").src = userImgPath.toString();
+document.getElementById("userImage2").src = userImgPath.toString();
+document.getElementById("userImage3").src = userImgPath.toString();
+
+
 var postBtn = document.getElementById("PostBtn");
+
 
 //postBtn.onclick = function () {
 //    var userId = getCookie("userID");
@@ -89,12 +133,21 @@ function likeClick(likeBtn) {
     var userId = getCookie("userID");
     var postId = likeBtn.getAttribute("PostId");
     var postLikeStatus = likeBtn.getAttribute("PostLikeStatus");
-    var postLikeId = likeBtn.getAttribute("PostLikeId");
-
-    //alert("PostId: " + postId);
-    //alert("PostLikeStatus: " + postLikeStatus);
-    //alert("PostLikeId: " + postLikeId);
-
+    if (postLikeStatus > 0) {
+            $.ajax({
+                url: 'PostLikeEntities/ToggleDelete',
+                type: 'DELETE',
+                data: { 'UserId': userId, 'PostId': postId },
+                success: function (response) {
+                    alert("Unliked Post: " + postId + "  UserID: " + userId);
+                    location.reload()
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr);
+                }
+            });
+             }
+        else {
         $.ajax({
             type: "POST",
             url: "PostLikeEntities/Create",
@@ -107,17 +160,19 @@ function likeClick(likeBtn) {
                 alert(xhr);
             }
         });
+    }
 }
 
 //function commentClick(commentBtn) {
 //    var userId = getCookie("userID");
 //    var postId = commentBtn.getAttribute("PostId");
 //    var content = $("textarea", $(commentBtn).parent()).val();
+//    var file = $('input[type=file]', $(commentBtn).parent()).val();
 
 //    $.ajax({
 //        type: "POST",
 //        url: "CommentEntities/Create",
-//        data: { 'PostID': postId, 'UserID': userId, 'Content': content },
+//        data: { 'PostID': postId, 'UserID': userId, 'Content': content, 'ImgPath': file },
 //        success: function (response) {
 //            alert("Made comment:  " + content + "   on PostId:  " + postId);
 //            location.reload();
@@ -127,3 +182,64 @@ function likeClick(likeBtn) {
 //        }
 //    });
 //}
+
+
+function commentClick(commentBtn) {
+    var userId = getCookie("userID");
+    var postId = commentBtn.getAttribute("PostId");
+    var content = $("textarea", $(commentBtn).parent()).val();
+    //var file = $('input[name=file]', $(commentBtn).parent()).val();
+    var file = $('input[name=file]', $(commentBtn).parent());
+
+    $.ajax({
+        type: "POST",
+        url: "CommentEntities/CreateComment",
+        data: { 'PostID': postId, 'UserID': userId, 'Content': content, 'ImgPath': file },
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            alert("Made comment:  " + content + "   on PostId:  " + postId + "    ImgPath:  " + file);
+            location.reload();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr);
+        }
+    });
+}
+
+
+
+
+function likeCommentClick(commentLikeBtn) {
+    var userId = getCookie("userID");
+    var commentId = commentLikeBtn.getAttribute("CommentId");
+    var commentLikeStatus = commentLikeBtn.getAttribute("CommentLikeStatus");
+    if (commentLikeStatus > 0) {
+        $.ajax({
+            url: 'CommentLikeEntities/ToggleCommentLikeDelete',
+            type: 'DELETE',
+            data: { 'UserId': userId, 'CommentId': commentId },
+            success: function (response) {
+                alert("Unliked Comment: " + commentId + "  UserId: " + userId);
+                location.reload()
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr);
+            }
+        });
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            url: "CommentLikeEntities/Create",
+            data: { 'UserId': userId, 'CommentId': commentId, 'CommentLikeStatus': 1 },
+            success: function (response) {
+                alert("Liked Commment: " + commentId + "  UserID: " + userId);
+                location.reload()
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr);
+            }
+        });
+    }
+}

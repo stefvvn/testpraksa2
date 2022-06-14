@@ -1,5 +1,4 @@
 ﻿@model LoginModel
-@*@model Facebook.Entities.AccountUserInfoEntities*@
 @{
     ViewData["Title"] = "Home Page"; 
 }
@@ -40,7 +39,7 @@
 <div id="div2">
 <h1>Create an account</h1>
 <p>It's free and always will be.</p>
-<form asp-action="Create" enctype="multipart/form-data" method="post">
+<form asp-controller="AccountUserInfoEntities" asp-action="CreateUser" enctype="multipart/form-data" method="post">
 
 <li>            <label asp-for="UserName" class="control-label"></label>
                 <input asp-for="UserName" class="form-control" />
@@ -69,7 +68,6 @@
                 <label asp-for="DateOfBirth" class="control-label"></label>
                 <input asp-for="DateOfBirth" class="form-control" />
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span></li>
-
 <li>
                 <label asp-for="Gender" class="control-label"></label>
                 <br />
@@ -78,14 +76,11 @@
                     <option value="2">Female</option>
                     <option value="3">Unspecified</option>
                 </select> 
-<li>   
-                <input type="file" id="upload" name="file" />
-</li>
-
-                <span asp-validation-for="Gender" class="text-danger"></span></li>
+                <br />
 <li>
-
-</li>
+                <label asp-for="ImgPath" value="Profile picture" class="control-label"></label>
+                <input asp-for="ImgPath" class="form-control" type="file" name="file" id="upload"/>
+                <span asp-validation-for="ImgPath" class="text-danger"></span></li>
 <br />
 <li id="terms">By clicking Create an account, you agree to our <a href="">Terms</a> and that <br>you have read our <a href="">Data Policy</a>, including our <a href="">Cookie Use</a>.</li>
 

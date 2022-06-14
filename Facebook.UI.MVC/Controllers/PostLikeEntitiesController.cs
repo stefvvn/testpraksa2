@@ -30,6 +30,16 @@ namespace Facebook.UI.MVC.Controllers
             return View(await _context.PostLikeEntities.ToListAsync());
         }
 
+        [HttpDelete]
+        [IgnoreAntiforgeryToken]
+        public IActionResult ToggleDelete(int userId, int postId)
+        {
+            PostLikesBsn like = new PostLikesBsn();
+            like.ToggleDeletePostLike(userId, postId);
+            return Redirect("https://localhost:7029/PostEntities");
+        }
+
+
         // GET: PostLikeEntities/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -117,33 +127,37 @@ namespace Facebook.UI.MVC.Controllers
             return View(postLikeEntities);
         }
 
+        [IgnoreAntiforgeryToken]
         // GET: PostLikeEntities/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int userId, int postId)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var postLikeEntities = await _context.PostLikeEntities
-                .FirstOrDefaultAsync(m => m.PostLikeId == id);
-            if (postLikeEntities == null)
-            {
-                return NotFound();
-            }
+            //var postLikeEntities = await _context.PostLikeEntities
+            //    .FirstOrDefaultAsync(m => m.PostLikeId == id);
+            //if (postLikeEntities == null)
+            //{
+            //    return NotFound();
+            //}
 
-            return View(postLikeEntities);
+            //return View(postLikeEntities);
+            PostLikesBsn like = new PostLikesBsn();
+            return View(like.ToggleDeletePostLike(userId, postId));
         }
 
         // POST: PostLikeEntities/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [IgnoreAntiforgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int? id)
         {
             var postLikeEntities = await _context.PostLikeEntities.FindAsync(id);
             _context.PostLikeEntities.Remove(postLikeEntities);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+
         }
 
         private bool PostLikeEntitiesExists(int id)

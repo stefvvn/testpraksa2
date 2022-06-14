@@ -24,6 +24,21 @@ namespace Facebook.UI.MVC
             _context = context;
         }
 
+
+        public IActionResult SearchPosts(string query)
+        {
+            SearchBsn src = new SearchBsn();
+            List<PostEntities> posts = src.SearchPosts(query);
+            List<AccountUserInfoEntities> users = src.SearchUsers(query);
+            List<object> result = posts.Cast<object>().Concat(users).ToList();
+
+            return View(result);
+        }
+
+
+
+
+
         // GET: PostEntities
         public async Task<IActionResult> Index() 
         {
@@ -36,8 +51,8 @@ namespace Facebook.UI.MVC
                 Console.WriteLine("Name: " + entity.User.FirstName.ToString() + " " + entity.User.LastName.ToString());
                 Console.WriteLine("PostId: " + entity.PostId.ToString());
                 Console.WriteLine("Likes:  " + entity.PostLikes.Count());
+                Console.WriteLine("Comments:  " + entity.Comments.Count());
             }
-
             return View(joinedModels);
         }
 
@@ -86,59 +101,6 @@ namespace Facebook.UI.MVC
             return View(post.InsertPost(postEntities));
         }
 
-        //[HttpPost]
-        ////[ValidateAntiForgeryToken]
-        //[IgnoreAntiforgeryToken]
-        //public IActionResult Upload(IFormFile file)
-        //{
-        //    var fileName = Path.GetFileName(file.FileName);
-        //    var uniqueFileName = Convert.ToString(Guid.NewGuid());
-        //    var fileExtension = Path.GetExtension(fileName);
-        //    //var newFileName = String.Concat(uniqueFileName, fileExtension);
-        //    var newFileName = String.Concat(fileName);
-
-        //    var filepath = (Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "img")) + $@"\{newFileName}";
-        //    using (FileStream fs = System.IO.File.Create(filepath))
-        //    {
-        //        file.CopyTo(fs);
-        //        fs.Flush();
-        //    }
-
-        //    return View();
-        //}
-
-
-        [HttpPost]
-        //[ValidateAntiForgeryToken]
-        [IgnoreAntiforgeryToken]
-        public IActionResult CreateComment(int UserID, int PostID, string CommentContent, string ImgPath, IFormFile file)
-        {
-            CommentEntities comment = new CommentEntities();
-            CommentBsn commentBsn = new CommentBsn();
-
-            var fileName = Path.GetFileName(file.FileName);
-            var uniqueFileName = Convert.ToString(Guid.NewGuid());
-            var fileExtension = Path.GetExtension(fileName);
-            var newFileName = String.Concat(uniqueFileName, fileExtension);
-
-            comment.UserId = Convert.ToInt32(HttpContext.Request.Cookies["userID"]);
-            comment.PostId = 4;
-            comment.Content = CommentContent;
-            comment.ImgPath = newFileName;
-            commentBsn.InsertComment(comment);
-
-            ///////////     LAST ID
-
-            var filepath = (Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "img")) + $@"\{newFileName}";
-            using (FileStream fs = System.IO.File.Create(filepath))
-            {
-                file.CopyTo(fs);
-                fs.Flush();
-            }
-            return Redirect("https://localhost:7029/PostEntities");
-        }
-
-
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
@@ -159,20 +121,16 @@ namespace Facebook.UI.MVC
             post.ImgPath = newFileName;
             postbsn.InsertPost(post);
 
-            ///////////     LAST ID
+            var lastpost = postbsn.GetLastPost();
+            var newPostId = lastpost.PostId;
 
-            var filepath = (Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "img")) + $@"\{newFileName}";
+            var filepath = (Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "img", "post")) + $@"\{newPostId}" + $@"\{newFileName}";
+            Directory.CreateDirectory(Path.GetDirectoryName(filepath));
             using (FileStream fs = System.IO.File.Create(filepath))
             {
                 file.CopyTo(fs);
                 fs.Flush();
             }
-
-
-
-
-
-
             return Redirect("https://localhost:7029/PostEntities");
         }
 

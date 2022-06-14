@@ -13,6 +13,7 @@
         public Byte Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string ProfileDescription { get; set; }
+        public string ImgPath { get; set; }
 
 
         public string email { get; set; }

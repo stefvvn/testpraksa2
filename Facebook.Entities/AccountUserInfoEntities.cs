@@ -31,6 +31,7 @@ namespace Facebook.Entities
         public string ProfileDescription { get; set; }
         [Column(TypeName = "DateTime2")]
         public DateTime DateMade { get; set; }
+        public string ImgPath { get; set; }
         public string GenderString
         {
             get
@@ -41,7 +42,7 @@ namespace Facebook.Entities
                 return "Musko";
             }
         }
-        public string? ImgPath { get; set; }
+
         public virtual ICollection<PostEntities> Posts { get; set; }
         public virtual ICollection<PostLikeEntities> PostLikes { get; set; }
     }

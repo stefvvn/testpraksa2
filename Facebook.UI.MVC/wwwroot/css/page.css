@@ -373,7 +373,9 @@ nav {
 .add-post-links {
     display: flex;
     margin-top: 10px;
-    justify-content:space-between;
+    margin-bottom: -5px;
+    justify-content:flex-end;
+    font-weight: 800;
 }
     .add-post-links p {
         font-weight: 800;
@@ -382,15 +384,14 @@ nav {
         text-decoration: none;
         display: flex;
         align-items: center;
-        /*color: #626262;*/
         color: var(--text-color);
-        margin-right: 30px;
+        margin-right: 20px;
         font-size: 13px;
     }
 
         .add-post-links a img {
-            width: 20px;
-            margin-right: 10px;
+            width: 25px;
+            margin-right: 5px;
         }
 
 .post-container {
@@ -435,7 +436,9 @@ nav {
 .activity-icons div {
     display: inline-flex;
     align-items: center;
-    margin-right: 30px;
+    margin-right: 15px;
+    padding-left: 0px;
+    padding-top: -8px;
 }
 
 .post-profile-icon {
@@ -494,7 +497,36 @@ nav {
     cursor: pointer;
     color: var(--text-color);
     background: transparent;
+
 }
+    .like-button img {
+        height: 22px;
+        margin-right: 5px;
+        margin-top: -7px;
+        margin-left: 5px;
+    }
+
+/*.blue-like {
+    background-image: url(/images/like-blue.png);
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    margin-left: 3px;
+    margin-right: 15px;
+    background-position: bottom;
+    background-size: cover;
+}
+    .blue-like img {
+        display: none;*/
+/*      margin-right: 5px;
+        margin-top: -7px;
+        margin-left: 5px;*/
+    /*}
+
+
+.gray-like {
+    background-image: url(/images/like.png);
+}*/
 
 .footer {
     text-align: center;
@@ -633,8 +665,10 @@ nav {
     border-radius: 10px;
     float: left;
     padding: 5px 15px 0px 5px;
+    margin-left: 6px;
     margin-bottom: 8px;
     background-color: var(--comment-background);
+    width: 96%;
 }
 
 .comment-user-profile {
@@ -680,10 +714,29 @@ nav {
     padding-bottom: 8px;
 }
 
-.comment-like-button img {
-    width: 22px;
-    margin-right: 5px;
+    .comment-like-button img {
+        width: 22px;
+        margin-right: 5px;
+    }
+
+/*.blue-comment-like {
+    background-image: url(/images/like-blue.png);
+    background-repeat: no-repeat;
+    height: 20px;
+    width: 20px;
+    margin-left: 3px;
+    margin-right: 15px;
+    background-position: bottom;
+    background-size: cover;
 }
+
+    .blue-comment-like img {
+        display: none;
+              margin-right: 5px;
+        margin-top: -7px;
+        margin-left: 5px;
+    }*/
+
 .comment-upload-button {
     width: 30px;
     margin-bottom: 3px;
@@ -692,4 +745,10 @@ nav {
 .post-upload-button {
     width: 50px;
     cursor: pointer;
+    margin-right: 5px;
+}
+
+.comment-picture {
+    width: 70%;
+    border-radius: 5px;
 }

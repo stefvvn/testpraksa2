@@ -7,6 +7,7 @@ namespace Facebook.Business
 {
     public class AccountUserInfoBsn
     {
+
         public AccountUserInfoEntities InsertUser(AccountUserInfoEntities user)
         {
             IAccountUserInfo data = new AccountUserInfoEF();
@@ -57,6 +58,12 @@ namespace Facebook.Business
         {
             IAccountUserInfo data = new AccountUserInfoEF();
             return data.GetUserByEmail(email);
+        }
+
+        public AccountUserInfoEntities GetLastUser()
+        {
+            IAccountUserInfo data = new AccountUserInfoEF();
+            return data.GetLastUser();
         }
     }
 }

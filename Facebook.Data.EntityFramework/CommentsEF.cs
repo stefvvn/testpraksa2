@@ -49,5 +49,10 @@ namespace Facebook.Data.EntityFramework
             Db.SaveChanges();
             return comment;
         }
+        public CommentEntities GetLastComment()
+        {
+            ApplicationDbContext Db = new ApplicationDbContext();
+            return Db.Comment.OrderByDescending(p => p.CommentId).FirstOrDefault();
+        }
     }
 }

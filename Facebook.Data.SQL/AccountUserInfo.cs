@@ -185,6 +185,11 @@ namespace Facebook.Data.SQL
         {
             throw new NotImplementedException();
         }
+
+        public AccountUserInfoEntities GetLastUser()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

@@ -25,14 +25,10 @@ namespace Facebook.Entities
         public string Title { get; set; }
         public string? ImgPath { get; set; }
 
-
-        [NotMapped]
-        public int LikeCount { get { return PostLikes.Count(); } }
-
-
         [ForeignKey("UserId")]
         public virtual AccountUserInfoEntities User { get; set; }
         public virtual List<PostLikeEntities>? PostLikes { get; set; }
+        public int? LikedByUser { get { return PostLikes.Where(x => x.UserId == 64).Count(); } }
         public virtual List<CommentEntities>? Comments { get; set; }
     }
 }

@@ -22,6 +22,11 @@ namespace Facebook.Business
             IPosts data = new PostsEF();
             return data.GetPostByID(Id);
         }
+        public PostEntities GetLastPost()
+        {
+            IPosts data = new PostsEF();
+            return data.GetLastPost();
+        }
         public PostEntities UpdatePost(PostEntities post)
         {
             IPosts data = new PostsEF();

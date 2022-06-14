@@ -14,22 +14,13 @@ using Microsoft.AspNetCore.Http;
 namespace Facebook.Data.EntityFramework
 {
 
-    public class PostsEF : SqlBaseData, IPosts
+    public class PostsEF : SqlBaseData, IPosts, ISearch
     {
 
-        public List<PostEntities> GetJoinedPostList(int loggedInUser)
+        public List<PostEntities> SearchPosts(string query)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-
-            var posts = db.Post
-                    .Include(u => u.User)
-                    .Include(c => c.Comments)
-                    //.Include(b => b.PostLikes.Where(x => x.UserId == loggedInUser))
-                    .Include(b => b.PostLikes)
-                    .OrderByDescending(u => u.PostId)
-                    .ToList();
-
-            return posts;
+            return db.Post.Where(p => p.Title.Contains(query) || p.Content.Contains(query)).ToList();
         }
 
         public List<PostEntities> GetPostsByUser(int Id)
@@ -46,6 +37,23 @@ namespace Facebook.Data.EntityFramework
             return post;
         }
 
+
+
+
+        public List<PostEntities> GetJoinedPostList(int loggedInUser)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            return db.Post
+                    .Include(u => u.User)
+                    .Include(b => b.PostLikes)
+                    .Include(c => c.Comments)
+                        .ThenInclude(p => p.CommentLikes)
+                    .OrderByDescending(u => u.PostId)
+                    .ToList();
+        }
+
+ 
         public PostEntities InsertPost(PostEntities post)
         {
             ApplicationDbContext Db = new ApplicationDbContext();
@@ -69,6 +77,22 @@ namespace Facebook.Data.EntityFramework
         {
             ApplicationDbContext Db = new ApplicationDbContext();
             return (PostEntities)Db.Post.Where(i => i.PostId == id);
+        }
+
+        public PostEntities GetLastPost()
+        {
+            ApplicationDbContext Db = new ApplicationDbContext();
+            return Db.Post.OrderByDescending(p => p.PostId).FirstOrDefault();
+        }
+
+        public List<AccountUserInfoEntities> SearchUsers(string query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CommentEntities> SearchComments(string query)
+        {
+            throw new NotImplementedException();
         }
     }
 }

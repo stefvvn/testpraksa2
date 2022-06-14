@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Facebook.Entities.PostEntities>
-@*@model IEnumerable<FeedModel>*@
 @{
     ViewData["Title"] = "Index";
 }
@@ -12,13 +11,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Facebook.UI.MVC</title>
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/page.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Facebook.UI.MVC.styles.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap" rel="stylesheet">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
     <script src="~/js/site.js"></script>
     <script src="https://kit.fontawesome.com/bd623f34da.js" crossorigin="anonymous"></script>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
     
 
 </head>
@@ -35,15 +36,18 @@
                 </ul>
             </div>
             <div class="nav-right">
-
-                <div class="search-box">
-                    <img src="~/images/search.png">
-                    <input type="text" placeholder="Search">
-                </div>
+                    <form asp-controller="PostEntities" asp-action="SearchPosts">
+                        <div class="search-box">
+                        <input type="text" placeholder="Search" name="query">
+                            <label>
+                                      <img src="~/images/search.png">
+                                      <input type="submit" id="SearchBtn" style="display: none">
+                            </label>         
+                        </div>
+                    </form>
                 <div class="nav-user-icon online" onclick="settingsMenuToggle()">
-                    <img src="~/images/profile-pic.png">
+                    <img src="~/images/profile-pic.png" id="userImage3">
                 </div>
-
             </div>
             <!----------settings-menu----------->
             <div class="settings-menu">
@@ -51,11 +55,9 @@
                     <span></span>
                 </div>
 
-
-
                 <div class="settings-menu-inner">
                     <div class="user-profile">
-                        <img src="~/images/profile-pic.png">
+                        <img src="~/images/profile-pic.png" id="userImage2">
                         <div class="">
                             <p id="SettingsSessionName"></p>
                             <a href="#">See your profile</a>
@@ -90,7 +92,6 @@
                         <a href="#">Logout <img src="~/images/arrow.png" 
                         width="10px"></a>
                     </div>
-
 
                 </div>
                
@@ -142,10 +143,9 @@
                         <p>Dejan Ivanovic</p>
                     </div>
                 </div>
-
-                <div class="write-post-container">
+            <div class="write-post-container">
                     <div class="user-profile">
-                        <img src="~/images/profile-pic.png">
+                        <img src="~/images/profile-pic.png" id="userImage">
                         <div>
                             <p id="FeedSessionName"></p>
                             <small>Public <i class="fa-solid fa-angle-down"></i></small>
@@ -157,9 +157,9 @@
                         <textarea rows="1" placeholder="Title" name="Title" id="TitleBox"></textarea>
                         <textarea rows="1" placeholder="What's on your mind?" name="PostContent" id="ContentBox"></textarea>
                         <div class="add-post-links">
-                          @*<a href="#"><img src="~/images/live-video.png"> Live Video</a>*@
-                          @*<a href="#"><img src="~/images/feeling.png"> Feeling/Activity</a>*@
-                          @*<a href="#"><img src="~/images/photo.png">Photo</a>*@
+                          <a href="#"><img src="~/images/live-video.png"> Go Live</a>
+                          <a href="#"><img src="~/images/feeling.png"> Feeling/Mood</a>
+                          <a href="#"><img src="~/images/photo.png">Photo</a>
                          
                                   <label className="btn btn-info btn-lg post-upload-label">
                                   <img src="~/images/upload.png" class="post-upload-button">
@@ -177,8 +177,7 @@
                 <div class="post-container">
                     <div class="post-row">
                         <div class="user-profile">
-                            @*<img src="~/images/profile-pic.png">*@
-                            <img src="~/images/img/@item.User.ImgPath">
+                            <img src="~/images/img/user/@item.UserId/@item.User.ImgPath">
 
                             <div>
                                 <p><a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@item.UserId">@Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName)</a></p>
@@ -189,48 +188,34 @@
                     </div>
                     <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
                     <p class="post-text">@Html.DisplayFor(modelItem => item.Content)</p>
-                    @*<img src="~/images/feed-image-1.png" class="post-img">*@
-                     <img src="~/images/img/@item.ImgPath" class="post-img">
+                    <a href="~/images/img/post/@item.PostId/@item.ImgPath" class="image-popup"> <img src="~/images/img/post/@item.PostId/@item.ImgPath" class="post-img"></a>
 
 
                     <div class="post-row">
                         <div class="activity-icons">
-                           <button type="button" class="like-button" onclick="likeClick(this)" PostId="@item.PostId" > <div><img src="~/images/like-blue.png">@item.PostLikes.Count</div> </button>
-
-                            <div><img src="~/images/comments.png"> 45</div>
-                            <div><img src="~/images/share.png"> 20</div>
-                        </div>
-                        <div class="post-profile-icon">
-                            <img src="~/images/profile-pic.png"><i class="fa-solid fa-angle-down"></i>
+                           <button type="button" class="like-button" onclick="likeClick(this)" PostId="@item.PostId" PostLikeStatus="@item.LikedByUser"><img src="~/images/like.png" class="LikeImage"><div>@item.PostLikes.Count</div></button>
+                           <div><img src="~/images/comments.png">@item.Comments.Count</div>
+                           <div><img src="~/images/share.png"></div>
                         </div>
                     </div>
                 <div class="comment-container"> 
                     @foreach (var comment in item.Comments)
                     {
-
                         <div class="comment-body">
 
                             <div class="comment-user-profile">
-                                <img src="~/images/img/@Html.DisplayFor(modelItem => comment.User.ImgPath)" class="comment-user-profilepic">
+                                <img src="~/images/img/user/@Html.DisplayFor(modelItem => comment.User.UserIdNumber)/@Html.DisplayFor(modelItem => comment.User.ImgPath)" class="comment-user-profilepic">
                                 <p><a asp-controller="AccountUserInfoEntities" asp-action="Details" asp-route-id="@comment.UserId">@Html.DisplayFor(modelItem => comment.User.FirstName) @Html.DisplayFor(modelItem => comment.User.LastName)</a>
                                 <a asp-controller="CommentEntities" asp-action="Details" asp-route-id="@comment.CommentId">@Html.DisplayFor(modelItem => comment.DateMade)</a>
                                 </p>
                             </div>
                            <div class="comment-content"> 
                             @Html.DisplayFor(modelItem => comment.Content)<br>
+                            <a href="~/images/img/comment/@Html.DisplayFor(modelItem => comment.CommentId)/@Html.DisplayFor(modelItem => comment.ImgPath)" class="image-popup"> <img src="~/images/img/comment/@Html.DisplayFor(modelItem => comment.CommentId)/@Html.DisplayFor(modelItem => comment.ImgPath)" class="comment-picture"></a>
                                 </div>
-                        <button type="button" class="comment-like-button" onclick="likeCommentClick(this)" CommentId="@comment.CommentId" > <div><img src="~/images/like-blue.png"></div> </button>
+                        <button type="button" class="comment-like-button" onclick="likeCommentClick(this)" CommentId="@comment.CommentId" CommentLikeStatus="@comment.LikedByUser"> <div><img src="~/images/like.png" class="LikeImage"> @Html.DisplayFor(modelItem => comment.CommentLikes.Count)</div></button>
                         </div>
-
-
-
                     }
-
-@*                    <div class="write-comment-container">
-                                <div class="comment-input-container">
-                                <textarea rows="1" placeholder="Type a comment here" name="CommentContent"></textarea>
-                                <input type="button" value="Comment" class="comment-button" onclick="commentClick(this)" PostId="@item.PostId">
-                                </div> *@
 
                          <div class="write-comment-container">
                              <form enctype="multipart/form-data" method="post" asp-controller="PostEntities" asp-action="CreateComment">
@@ -242,7 +227,8 @@
                                   <input type="file" id="upload" name="file" style="display: none" />
                                 </label>
                                
-                                <input type="submit" value="Comment" class="comment-button" name="CommentBtn">
+                                @*<input type="submit" value="Comment" class="comment-button" name="CommentBtn">*@
+                                <input type="button" value="Comment" class="comment-button" name="CommentBtn" onclick="commentClick(this)" PostId="@item.PostId">
                              </div>      
                              </form>
                     </div>

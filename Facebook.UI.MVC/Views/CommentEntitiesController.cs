@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Facebook.Entities;
 using Facebook.UI.MVC.Data;
 using Facebook.Business;
+using Facebook.Data.EntityFramework;
 using Microsoft.AspNetCore.Http;
 using Facebook.UI.MVC.Models;
 
@@ -49,11 +50,44 @@ namespace Facebook.UI.MVC.Views
         [HttpPost]
         //[ValidateAntiForgeryToken]
         [IgnoreAntiforgeryToken]
-        public async Task<IActionResult> Create([Bind("CommentId,PostId,UserId,Content,DateMade")] CommentEntities commentEntities)
+        public async Task<IActionResult> Create([Bind("CommentId,PostId,UserId,Content,DateMade,ImgPath")] CommentEntities commentEntities)
         {
             CommentBsn comment = new CommentBsn();
             return View(comment.InsertComment(commentEntities));
         }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        [IgnoreAntiforgeryToken]
+        public IActionResult CreateComment(int UserID, int PostID, string Content, string ImgPath, IFormFile file)
+        {
+            CommentEntities comment = new CommentEntities();
+            CommentBsn commentBsn = new CommentBsn();
+            var fileName = Path.GetFileName(file.FileName);
+            var uniqueFileName = Convert.ToString(Guid.NewGuid());
+            var fileExtension = Path.GetExtension(fileName);
+            var newFileName = String.Concat(uniqueFileName, fileExtension);
+
+            comment.UserId = Convert.ToInt32(HttpContext.Request.Cookies["userID"]);
+            comment.PostId = PostID;
+            comment.Content = Content;
+            comment.ImgPath = newFileName;
+            commentBsn.InsertComment(comment);
+
+            var lastComment = commentBsn.GetLastComment();
+            var newCommentId = lastComment.CommentId;
+
+            var filepath = (Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "img", "comment")) + $@"\{newCommentId}" + $@"\{newFileName}";
+            Directory.CreateDirectory(Path.GetDirectoryName(filepath));
+            using (FileStream fs = System.IO.File.Create(filepath))
+            {
+                file.CopyTo(fs);
+                fs.Flush();
+            }
+            return Redirect("https://localhost:7029/PostEntities");
+        }
+
+
 
         // GET: CommentEntities/Edit/5
         public async Task<IActionResult> Edit(int? id)
