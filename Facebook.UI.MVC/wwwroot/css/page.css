@@ -752,3 +752,11 @@ nav {
     width: 70%;
     border-radius: 5px;
 }
+
+.bluelike {
+    background-image: url(/img/like-blue.png);
+}
+
+.graylike {
+    background-image: url(/img/like-.png);
+}

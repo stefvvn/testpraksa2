@@ -28,15 +28,11 @@ $(document).ready(function ($) {
 });
 
 
-//var likeButtons = document.getElementsByClassName("LikeImage");
-//for (var i = 0; i < likeButtons.length; i++) {
-//    if ()
-//}
 
 
-//var commentLikeButtons = document.getElementsByClassName("LikeImage");
-//for (var i = 0; i < commentLikeButtons.length; i++) {
-//    commentLikeButtons[i].className += " blue-comment-like";
+//var LikeButtons = document.getElementsByClassName("LikeImage");
+//for (var i = 0; i < LikeButtons.length; i++) {
+//    LikeButtons[i].className += " bluelike";
 //}
 
 
